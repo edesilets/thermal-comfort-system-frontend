@@ -28,7 +28,20 @@ let signIn = function(item, onSuccess, onFailure) {
   .fail(onFailure);
 };
 
+let signOut = function(onSuccess, onFailure) {
+  $.ajax({
+    url: env.url + 'sign-out/' + env.user.id,
+    type: 'DELETE',
+    headers: {
+        Authorization: 'Token token=' + env.user.token,
+      }
+  })
+  .done(onSuccess)
+  .fail(onFailure);
+};
+
 module.exports = {
   signUp,
   signIn,
+  signOut,
 };
