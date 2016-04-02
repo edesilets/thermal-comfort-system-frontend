@@ -4,6 +4,7 @@
 let signUpTemplate = require('./handlebars/signUp.handlebars');
 let signInTemplate = require('./handlebars/signIn.handlebars');
 let signOutTemplate = require('./handlebars/signOut.handlebars');
+let changePassTemplate = require('./handlebars/changePass.handlebars');
 let api = require('./api-req/access');
 
 let init = function() {
@@ -26,6 +27,11 @@ let init = function() {
     api.signOut();
   });
 
+  $('.changePass').append(changePassTemplate());
+  $('.changePass-button').on('click', function () {
+    let item = new FormData(document.querySelector('form[role="changePass"]'));
+    api.changePass(item);
+  });
 };
 
 $(document).ready(init);

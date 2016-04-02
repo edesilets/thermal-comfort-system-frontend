@@ -40,8 +40,24 @@ let signOut = function(onSuccess, onFailure) {
   .fail(onFailure);
 };
 
+let changePass = function(item, onSuccess, onFailure) {
+  $.ajax({
+    url: env.url + 'change-password/' + env.user.id,
+    type: 'PATCH',
+    headers: {
+        Authorization: 'Token token=' + env.user.token,
+      },
+    contentType: false,                     // Needed for FormData
+    processData: false,                     // Needed for FormData This is because item
+    data: item                              // item is referancing the new object called 'item'.
+  })
+  .done(onSuccess)
+  .fail(onFailure);
+};
+
 module.exports = {
   signUp,
   signIn,
   signOut,
+  changePass,
 };
