@@ -1,7 +1,18 @@
 'use strict';
 
-// user require with a reference to bundle the file and use it in this file
-// var example = require('./example');
+// handlebars template require below
+let signUpTemplate = require('./handlebars/signUp.handlebars');
+let api = require('./api-req/access');
 
-// use require without a reference to ensure a file is bundled
-require('./example');
+let init = function() {
+  // Main Functionaliy
+  $('.signUp').append(signUpTemplate());
+  $('.signUp-button').on('click', function () {
+    let item = new FormData(document.querySelector('form[role="signUp"]'));
+    api.signUp(item);
+  });
+};
+
+$(document).ready(init);
+
+module.exports = true;
