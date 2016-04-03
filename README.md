@@ -5,3 +5,7 @@
 [SB Admin](http://startbootstrap.com/template-overviews/sb-admin/)
 
 [Github SB Admin](https://github.com/BlackrockDigital/startbootstrap-sb-admin)
+
+### Weather Icons
+
+Add  https://erikflowers.github.io/weather-icons/

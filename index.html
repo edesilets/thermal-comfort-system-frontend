@@ -1,20 +1,178 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title>Example</title>
 
-      <script src="vendor.bundle.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="bundle.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <body class="container-fluid">
-      <h1>Example</h1>
+<head>
+  <title>HomeStatus</title>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.</p>
-    </body>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Ethan Desilets">
+
+  <!-- Morris Charts CSS -->
+  <!-- <link href="css/plugins/morris.css" rel="stylesheet"> -->
+
+  <script src="vendor.bundle.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="bundle.js" type="text/javascript" charset="utf-8" defer></script>
+  <!-- remote font-awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">Home Status</a>
+      </div>
+      <!-- Top Menu Items -->
+      <ul class="nav navbar-right top-nav">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+          <ul class="dropdown-menu message-dropdown">
+            <li class="message-preview">
+              <a>
+                <div class="media">
+                  <span class="pull-left">
+                    <img class="media-object" src="http://placehold.it/50x50" alt="">
+                  </span>
+                  <div class="media-body">
+                    <h5 class="media-heading">
+                      <strong>John Smith</strong>
+                    </h5>
+                    <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="message-preview">
+              <a>
+                <div class="media">
+                  <span class="pull-left">
+                    <img class="media-object" src="http://placehold.it/50x50" alt="">
+                  </span>
+                  <div class="media-body">
+                    <h5 class="media-heading">
+                      <strong>John Smith</strong>
+                    </h5>
+                    <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="message-preview">
+              <a>
+                <div class="media">
+                  <span class="pull-left">
+                    <img class="media-object" src="http://placehold.it/50x50" alt="">
+                  </span>
+                  <div class="media-body">
+                    <h5 class="media-heading">
+                      <strong>John Smith</strong>
+                    </h5>
+                    <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="message-footer">
+              <a>Read All New Messages</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+          <ul class="dropdown-menu alert-dropdown">
+            <li>
+              <a>Alert Name <span class="label label-default">Alert Badge</span></a>
+            </li>
+            <li>
+              <a>Alert Name <span class="label label-primary">Alert Badge</span></a>
+            </li>
+            <li>
+              <a>Alert Name <span class="label label-success">Alert Badge</span></a>
+            </li>
+            <li>
+              <a>Alert Name <span class="label label-info">Alert Badge</span></a>
+            </li>
+            <li>
+              <a>Alert Name <span class="label label-warning">Alert Badge</span></a>
+            </li>
+            <li>
+              <a>Alert Name <span class="label label-danger">Alert Badge</span></a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a>View All</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a><i class="fa fa-fw fa-user"></i> Profile</a>
+            </li>
+            <li>
+              <a><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+            </li>
+            <li>
+              <a><i class="fa fa-fw fa-gear"></i> Settings</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav side-nav">
+          <li>
+            <a href="javascript:;" data-toggle="collapse" data-target="#demo"> Home <i class="fa fa-fw fa-caret-down"></i></a>
+            <ul id="demo" class="collapse">
+              <li>
+                <a><i class="fa fa-fw fa-dashboard"></i> Main Dash</a>
+                <li>
+                  <a>Coal Shed</a>
+                </li>
+                <li>
+                  <a>Basement</a>
+                </li>
+                <li>
+                  <a>Garage</a>
+                </li>
+            </ul>
+            </li>
+            <li>
+              <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+            </li>
+            <li data-role="rules" >
+              <a><i class="fa fa-fw fa-edit"></i> Rules</a>
+            </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+
+    <div id="page-wrapper">
+      <!-- /#wrapper -->
+    </div>
+  </div>
+</body>
+
 </html>
