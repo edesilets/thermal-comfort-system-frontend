@@ -2,10 +2,10 @@
 
 // handlebars template require below
 // Signin actions
-let signUpTemplate = require('./handlebars/signUp.handlebars');
-let signInTemplate = require('./handlebars/signIn.handlebars');
-let signOutTemplate = require('./handlebars/signOut.handlebars');
-let changePassTemplate = require('./handlebars/changePass.handlebars');
+let signUpTemplate = require('./handlebars/sign/signUp.handlebars');
+let signInTemplate = require('./handlebars/sign/signIn.handlebars');
+let signOutTemplate = require('./handlebars/sign/signOut.handlebars');
+let changePassTemplate = require('./handlebars/sign/changePass.handlebars');
 
 // Views
 let dashTemplate = require('./handlebars/dashboard.handlebars');
