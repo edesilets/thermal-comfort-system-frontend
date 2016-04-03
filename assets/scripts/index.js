@@ -1,10 +1,16 @@
 'use strict';
 
 // handlebars template require below
+// Signin actions
 let signUpTemplate = require('./handlebars/signUp.handlebars');
 let signInTemplate = require('./handlebars/signIn.handlebars');
 let signOutTemplate = require('./handlebars/signOut.handlebars');
 let changePassTemplate = require('./handlebars/changePass.handlebars');
+
+// Views
+let dashTemplate = require('./handlebars/dashboard.handlebars');
+
+let uiRules = require('./ui/rules.js');
 let api = require('./api-req/access');
 
 let init = function() {
@@ -32,6 +38,10 @@ let init = function() {
     let item = new FormData(document.querySelector('form[role="changePass"]'));
     api.changePass(item);
   });
+
+  $('#page-wrapper').append(dashTemplate());
+
+  uiRules.start();
 };
 
 $(document).ready(init);
