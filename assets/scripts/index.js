@@ -1,47 +1,22 @@
 'use strict';
 
 // handlebars template require below
-// Signin actions
-let signUpTemplate = require('./handlebars/sign/signUp.handlebars');
-let signInTemplate = require('./handlebars/sign/signIn.handlebars');
-let signOutTemplate = require('./handlebars/sign/signOut.handlebars');
-let changePassTemplate = require('./handlebars/sign/changePass.handlebars');
-
 // Views
+let whenLogedoutNavTemplate = require('./handlebars/sign/signinNavOut.handlebars');
 let dashTemplate = require('./handlebars/dashboard.handlebars');
 
-let uiRules = require('./ui/rules.js');
-let api = require('./api-req/access');
+let uiSign = require('./ui/sign.js');
 
 let init = function() {
   // Main Functionaliy
-  $('.signUp').append(signUpTemplate());
-  $('.signUp-button').on('click', function () {
-    let item = new FormData(document.querySelector('form[role="signUp"]'));
-    api.signUp(item);
-  });
-
-  $('.signIn').append(signInTemplate());
-  $('.signIn-button').on('click', function () {
-    let item = new FormData(document.querySelector('form[role="signIn"]'));
-    api.signIn(item);
-  });
-
-  // Other functions below
-  $('.signOut').append(signOutTemplate());
-  $('.signOut-button').on('click', function () {
-    api.signOut();
-  });
-
-  $('.changePass').append(changePassTemplate());
-  $('.changePass-button').on('click', function () {
-    let item = new FormData(document.querySelector('form[role="changePass"]'));
-    api.changePass(item);
-  });
-
+  //ADD IF STATEMENT FOR localStorage CHECK IF USER IS LOGGED IN.
+  $('.userDropDown').append(whenLogedoutNavTemplate());
   $('#page-wrapper').append(dashTemplate());
-
-  uiRules.start();
+  $('li[data-role="login"]').on('click', uiSign.In);
+  $('li[data-role="signup"]').on('click', uiSign.up);
+  uiSign.out();
+  uiSign.changePass();
+  // Other functions below
 };
 
 $(document).ready(init);
