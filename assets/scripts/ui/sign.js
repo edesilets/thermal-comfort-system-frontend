@@ -7,7 +7,6 @@ let uiRules = require('../ui/rules.js');
 // Signin actions
 let signUpTemplate = require('../handlebars/sign/signUp.handlebars');
 let signInTemplate = require('../handlebars/sign/signIn.handlebars');
-let signOutTemplate = require('../handlebars/sign/signOut.handlebars');
 let changePassTemplate = require('../handlebars/sign/changePass.handlebars');
 
 let resetBody = function () {
@@ -19,7 +18,11 @@ let up = function () {
   $('#page-wrapper').append(signUpTemplate());
   $('.signUp-button').on('click', function () {
     let item = new FormData(document.querySelector('form[role="signUp"]'));
-    api.signUp(item);
+    api.signUp(item, function () {
+      append.signedInNav();
+      append.signedInBody();
+      uiRules.start();
+    });
     resetBody();
     $('.signUp').append(signUpTemplate());
     console.log('hit up');
@@ -33,20 +36,10 @@ let In = function () {
   $('.signIn-button').on('click', function () {
     let item = new FormData(document.querySelector('form[role="signIn"]'));
     api.signIn(item, function (data) {
-      localStorage.setItem('token', data);
-      console.log(data);
       append.signedInNav();
       append.signedInBody();
       uiRules.start();
     });
-  });
-};
-
-let out = function () {
-  $('.signOut-button').on('click', function () {
-    api.signOut();
-    resetBody();
-    $('.signOut').append(signOutTemplate());
   });
 };
 
@@ -62,6 +55,5 @@ let changePass = function () {
 module.exports = {
   up,
   In,
-  out,
   changePass
 };

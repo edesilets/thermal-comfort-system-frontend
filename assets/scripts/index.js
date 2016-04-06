@@ -14,7 +14,6 @@ let init = function() {
   $('#page-wrapper').append(dashTemplate());
   $('li[data-role="login"]').on('click', uiSign.In);
   $('li[data-role="signup"]').on('click', uiSign.up);
-  uiSign.out();
   uiSign.changePass();
   // Other functions below
 };
