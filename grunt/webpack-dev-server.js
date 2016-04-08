@@ -5,7 +5,7 @@ let clone = require('clone');
 let webpackConfig = clone(require('./webpack').options);
 
 // enable live reload without a script tag
-webpackConfig.entry.vendor.unshift('webpack-dev-server/client?http://localhost:8080');
+webpackConfig.entry.vendor.unshift('webpack-dev-server/client?http://homestatus.ddns.net:3000');
 
 module.exports = {
   options: {
