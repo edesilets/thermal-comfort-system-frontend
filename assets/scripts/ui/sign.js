@@ -7,7 +7,6 @@ let uiRules = require('../ui/rules.js');
 // Signin actions
 let signUpTemplate = require('../handlebars/sign/signUp.handlebars');
 let signInTemplate = require('../handlebars/sign/signIn.handlebars');
-let changePassTemplate = require('../handlebars/sign/changePass.handlebars');
 
 let resetBody = function () {
   $('#page-wrapper').empty();
@@ -43,17 +42,7 @@ let In = function () {
   });
 };
 
-let changePass = function () {
-  $('.changePass-button').on('click', function () {
-    let item = new FormData(document.querySelector('form[role="changePass"]'));
-    api.changePass(item);
-    resetBody();
-    $('.changePass').append(changePassTemplate());
-  });
-};
-
 module.exports = {
   up,
   In,
-  changePass
 };

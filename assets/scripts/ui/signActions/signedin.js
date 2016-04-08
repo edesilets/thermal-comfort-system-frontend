@@ -12,6 +12,7 @@ let signedInNav = function () {
     $('#page-wrapper').empty();
     $('.signOut').append(signOutTemplate());
   });
+  changePass();
 };
 
 // How the body should look when a user
@@ -19,6 +20,18 @@ let signedInBody = function () {
   $('#page-wrapper').empty();
   let dashTemplate = require('../../handlebars/dashboard.handlebars');
   $('#page-wrapper').append(dashTemplate());
+};
+
+let changePass = function () {
+  $('.changePass-nav-button').on('click', function () {
+    let changePassTemplate = require('../../handlebars/sign/changePass.handlebars');
+    $('#page-wrapper').empty();
+    $('#page-wrapper').append(changePassTemplate());
+    $('.changePass-button').on('click', function () {
+      let item = new FormData(document.querySelector('form[role="changePass"]'));
+      api.changePass(item,signedInBody);
+    });
+  });
 };
 
 module.exports = {
