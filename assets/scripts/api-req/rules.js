@@ -21,6 +21,24 @@ let index = function(onSuccess, onFailure) {
   .catch(onFailure);
 };
 
+let create = function(item, onSuccess, onFailure) {
+  return new Promise(function(resolve, reject) {
+    $.ajax({
+      url: env.url + 'rules',
+      type: 'POST',
+      contentType: false,                     // Needed for FormData
+      processData: false,                     // Needed for FormData This is because item
+      data: item                              // item is referancing the new object called 'item'.
+    })
+    .done((result) => resolve(result))
+    .fail((reason) => reject(reason));
+  })
+  .then((data) => setStorage(data))
+  .then(onSuccess)
+  .catch(onFailure);
+};
+
 module.exports = {
-index
+index,
+create,
 };
