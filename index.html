@@ -121,21 +121,9 @@
           </ul>
         </li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li>
-              <a><i class="fa fa-fw fa-user"></i> Profile</a>
-            </li>
-            <li>
-              <a><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-            </li>
-            <li>
-              <a><i class="fa fa-fw fa-gear"></i> Settings</a>
-            </li>
-            <li class="divider"></li>
-            <li>
-              <a><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-            </li>
+          <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span>Login</span><b class="caret"></b></a>
+          <ul class="dropdown-menu userDropDown">
+            <!-- handlebars signinNav.handlebars -->
           </ul>
         </li>
       </ul>
@@ -159,7 +147,7 @@
             </ul>
             </li>
             <li>
-              <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+              <a><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
             </li>
             <li data-role="rules" >
               <a><i class="fa fa-fw fa-edit"></i> Rules</a>
@@ -171,6 +159,10 @@
 
     <div id="page-wrapper">
       <!-- /#wrapper -->
+      <!-- <div class="signUp"><!-- Rendered by signUp.handlebars --><!-- </div> -->
+      <!-- <div class="signIn"><!-- Rendered by signIn.handlebars --><!-- </div> -->
+      <!-- <div class="signOut"><!-- Rendered by signOut.handlebars --><!-- </div> -->
+      <!-- <div class="changePass"><!-- Rendered by changePass.handlebars --><!-- </div> -->
     </div>
   </div>
 </body>
