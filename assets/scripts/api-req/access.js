@@ -4,6 +4,13 @@
 //"http://httpbin.org/post",
 const env = require('../env.js');
 
+let setStorage = function (data) {
+  let userInfo = data.userAttributes;
+  localStorage.setItem('email', userInfo.email);
+  localStorage.setItem('id', userInfo.id);
+  localStorage.setItem('token', userInfo.token);
+};
+
 let signUp = function(item, onSuccess, onFailure) {
   return new Promise(function(resolve, reject) {
     $.ajax({
@@ -16,11 +23,7 @@ let signUp = function(item, onSuccess, onFailure) {
     .done((result) => resolve(result))
     .fail((reason) => reject(reason));
   })
-  .then(function (data) {
-    localStorage.setItem('email', data.user.email);
-    localStorage.setItem('id', data.user.id);
-    localStorage.setItem('token', data.user.token);
-  })
+  .then((data) => setStorage(data))
   .then(onSuccess)
   .catch(onFailure);
 };
@@ -37,11 +40,7 @@ let signIn = function(item, onSuccess, onFailure) {
     .done((result) => resolve(result))
     .fail((reason) => reject(reason));
   })
-  .then(function (data) {
-    localStorage.setItem('email', data.user.email);
-    localStorage.setItem('id', data.user.id);
-    localStorage.setItem('token', data.user.token);
-  })
+  .then((data) => setStorage(data))
   .then(onSuccess)
   .catch(onFailure);
 };
@@ -86,7 +85,7 @@ let changePass = function(item, onSuccess, onFailure) {
     .fail((reason) => reject(reason));
   })
   .then(function (data) {
-    localStorage.setItem('token', data.user.token);
+    localStorage.setItem('token', data.userAttributes.token);
   })
   .then(onSuccess)
   .catch(onFailure);
