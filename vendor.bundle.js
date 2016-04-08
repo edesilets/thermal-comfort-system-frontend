@@ -99,7 +99,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(2);
-	module.exports = __webpack_require__(42);
+	module.exports = __webpack_require__(54);
 
 
 /***/ },
@@ -109,14 +109,21 @@
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
 	// handlebars template require below
+	// Views
 
-	var dashTemplate = __webpack_require__(3);
+	var whenLogedoutNavTemplate = __webpack_require__(3);
+	var dashTemplate = __webpack_require__(23);
 
-	var uiRules = __webpack_require__(23);
+	var uiSign = __webpack_require__(24);
 
 	var init = function init() {
+	  // Main Functionaliy
+	  //ADD IF STATEMENT FOR localStorage CHECK IF USER IS LOGGED IN.
+	  $('.userDropDown').append(whenLogedoutNavTemplate());
 	  $('#page-wrapper').append(dashTemplate());
-	  uiRules.start();
+	  $('li[data-role="login"]').on('click', uiSign.In);
+	  $('li[data-role="signup"]').on('click', uiSign.up);
+	  // Other functions below
 	};
 
 	$(document).ready(init);
@@ -9979,7 +9986,7 @@
 	var Handlebars = __webpack_require__(4);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "<div class=\"container-fluid\">\n\n  <!-- Page Heading -->\n  <div class=\"row\">\n    <div class=\"col-lg-12\">\n      <h1 class=\"page-header\">\n        Dashboard <small>Overview</small>\n      </h1>\n      <ol class=\"breadcrumb\">\n        <li class=\"active\">\n          <i class=\"fa fa-dashboard\"></i> Dashboard\n        </li>\n      </ol>\n    </div>\n  </div>\n  <!-- /.row -->\n\n  <div class=\"row\">\n    <div class=\"col-lg-6\">\n      <div class=\"panel panel-default\">\n        <div class=\"panel-heading\">\n          <h3 class=\"panel-title\"></i> Basement Boiler</h3>\n        </div>\n        <div class=\"panel-body\">\n          <div class=\"row\">\n            <div class=\"col-lg-6 col-md-6\">\n              <div class=\"panel panel-primary\">\n                <div class=\"panel-heading\">\n                  <div class=\"row\">\n                    <div class=\"col-xs-3\">\n                      <i class=\"wi wi-thermometer\"></i>\n                    </div>\n                    <div class=\"col-xs-9 text-right\">\n                      <div class=\"huge\">175&deg;F</div>\n                      <!-- <div>New Comments!</div> -->\n                    </div>\n                  </div>\n                </div>\n                <a href=\"#\">\n                  <div class=\"panel-footer\">\n                    <span class=\"pull-left\">View Details</span>\n                    <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                    <div class=\"clearfix\"></div>\n                  </div>\n                </a>\n              </div>\n            </div>\n            <div class=\"col-lg-6 col-md-6\">\n              <div class=\"panel panel-green\">\n                <div class=\"panel-heading\">\n                  <div class=\"row\">\n                    <div class=\"col-xs-3\">\n                      <!-- <i class=\"fa fa-tasks fa-5x\"></i> -->\n                    </div>\n                    <div class=\"col-xs-9 text-right\">\n                      <div class=\"huge\">162&deg;F</div>\n                      <!-- <div>New Tasks!</div> -->\n                    </div>\n                  </div>\n                </div>\n                <a href=\"#\">\n                  <div class=\"panel-footer\">\n                    <span class=\"pull-left\">View Details</span>\n                    <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                    <div class=\"clearfix\"></div>\n                  </div>\n                </a>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"row\"> <!-- Coal shed  and basement boiler row-->\n      <div class=\"col-lg-6\">\n        <div class=\"panel panel-default\">\n          <div class=\"panel-heading\">\n            <h3 class=\"panel-title\"></i> Coal Shed</h3>\n          </div>\n          <div class=\"panel-body\">\n            <div class=\"row\">\n\n              <div class=\"col-lg-6 col-md-6\">\n                <div class=\"panel panel-yellow\">\n                  <div class=\"panel-heading\">\n                    <div class=\"row\">\n                      <div class=\"col-xs-3\">\n                        <!-- <i class=\"fa fa-shopping-cart fa-5x\"></i> -->\n                      </div>\n                      <div class=\"col-xs-9 text-right\">\n                        <div class=\"huge\">210&deg;F</div>\n                        <!-- <div>New Orders!</div> -->\n                      </div>\n                    </div>\n                  </div>\n                  <a href=\"#\">\n                    <div class=\"panel-footer\">\n                      <span class=\"pull-left\">View Details</span>\n                      <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                      <div class=\"clearfix\"></div>\n                    </div>\n                  </a>\n                </div>\n              </div>\n              <div class=\"col-lg-6 col-md-6\">\n                <div class=\"panel panel-red\">\n                  <div class=\"panel-heading\">\n                    <div class=\"row\">\n                      <div class=\"col-xs-3\">\n                        <!-- <i class=\"fa fa-support fa-5x\"></i> -->\n                      </div>\n                      <div class=\"col-xs-9 text-right\">\n                        <div class=\"huge\">158&deg;F</div>\n                        <!-- <div>Support Tickets!</div> -->\n                      </div>\n                    </div>\n                  </div>\n                  <a href=\"#\">\n                    <div class=\"panel-footer\">\n                      <span class=\"pull-left\">View Details</span>\n                      <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                      <div class=\"clearfix\"></div>\n                    </div>\n                  </a>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n      <!-- /.row -->\n    </div>\n    <!-- /.row -->\n  </div>\n  <!-- /.container-fluid -->\n</div>\n<!-- /#page-wrapper -->\n";
+	    return "<li data-role=\"login\">\n  <a><i class=\"fa fa-fw fa-power-off\"></i> Log In</a>\n</li>\n<li data-role=\"signup\">\n  <a><i class=\"fa fa-fw fa-power-off\"></i> Sign Up</a>\n</li>\n";
 	},"useData":true});
 
 /***/ },
@@ -11161,16 +11168,293 @@
 /* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var Handlebars = __webpack_require__(4);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    return "<div class=\"container-fluid\">\n\n  <!-- Page Heading -->\n  <div class=\"row\">\n    <div class=\"col-lg-12\">\n      <h1 class=\"page-header\">\n        Dashboard <small>Overview</small>\n      </h1>\n      <ol class=\"breadcrumb\">\n        <li class=\"active\">\n          <i class=\"fa fa-dashboard\"></i> Dashboard\n        </li>\n      </ol>\n    </div>\n  </div>\n  <!-- /.row -->\n\n  <div class=\"row\">\n    <div class=\"col-lg-6\">\n      <div class=\"panel panel-default\">\n        <div class=\"panel-heading\">\n          <h3 class=\"panel-title\"></i> Basement Boiler</h3>\n        </div>\n        <div class=\"panel-body\">\n          <div class=\"row\">\n            <div class=\"col-lg-6 col-md-6\">\n              <div class=\"panel panel-primary\">\n                <div class=\"panel-heading\">\n                  <div class=\"row\">\n                    <div class=\"col-xs-3\">\n                      <i class=\"wi wi-thermometer\"></i>\n                    </div>\n                    <div class=\"col-xs-9 text-right\">\n                      <div class=\"huge\">175&deg;F</div>\n                      <!-- <div>New Comments!</div> -->\n                    </div>\n                  </div>\n                </div>\n                <a href=\"#\">\n                  <div class=\"panel-footer\">\n                    <span class=\"pull-left\">View Details</span>\n                    <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                    <div class=\"clearfix\"></div>\n                  </div>\n                </a>\n              </div>\n            </div>\n            <div class=\"col-lg-6 col-md-6\">\n              <div class=\"panel panel-green\">\n                <div class=\"panel-heading\">\n                  <div class=\"row\">\n                    <div class=\"col-xs-3\">\n                      <!-- <i class=\"fa fa-tasks fa-5x\"></i> -->\n                    </div>\n                    <div class=\"col-xs-9 text-right\">\n                      <div class=\"huge\">162&deg;F</div>\n                      <!-- <div>New Tasks!</div> -->\n                    </div>\n                  </div>\n                </div>\n                <a href=\"#\">\n                  <div class=\"panel-footer\">\n                    <span class=\"pull-left\">View Details</span>\n                    <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                    <div class=\"clearfix\"></div>\n                  </div>\n                </a>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"row\"> <!-- Coal shed  and basement boiler row-->\n      <div class=\"col-lg-6\">\n        <div class=\"panel panel-default\">\n          <div class=\"panel-heading\">\n            <h3 class=\"panel-title\"></i> Coal Shed</h3>\n          </div>\n          <div class=\"panel-body\">\n            <div class=\"row\">\n\n              <div class=\"col-lg-6 col-md-6\">\n                <div class=\"panel panel-yellow\">\n                  <div class=\"panel-heading\">\n                    <div class=\"row\">\n                      <div class=\"col-xs-3\">\n                        <!-- <i class=\"fa fa-shopping-cart fa-5x\"></i> -->\n                      </div>\n                      <div class=\"col-xs-9 text-right\">\n                        <div class=\"huge\">210&deg;F</div>\n                        <!-- <div>New Orders!</div> -->\n                      </div>\n                    </div>\n                  </div>\n                  <a href=\"#\">\n                    <div class=\"panel-footer\">\n                      <span class=\"pull-left\">View Details</span>\n                      <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                      <div class=\"clearfix\"></div>\n                    </div>\n                  </a>\n                </div>\n              </div>\n              <div class=\"col-lg-6 col-md-6\">\n                <div class=\"panel panel-red\">\n                  <div class=\"panel-heading\">\n                    <div class=\"row\">\n                      <div class=\"col-xs-3\">\n                        <!-- <i class=\"fa fa-support fa-5x\"></i> -->\n                      </div>\n                      <div class=\"col-xs-9 text-right\">\n                        <div class=\"huge\">158&deg;F</div>\n                        <!-- <div>Support Tickets!</div> -->\n                      </div>\n                    </div>\n                  </div>\n                  <a href=\"#\">\n                    <div class=\"panel-footer\">\n                      <span class=\"pull-left\">View Details</span>\n                      <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                      <div class=\"clearfix\"></div>\n                    </div>\n                  </a>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n      <!-- /.row -->\n    </div>\n    <!-- /.row -->\n  </div>\n  <!-- /.container-fluid -->\n</div>\n<!-- /#page-wrapper -->\n";
+	},"useData":true});
+
+/***/ },
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	var rulesTemplate = __webpack_require__(24);
+	var api = __webpack_require__(25);
+	var append = __webpack_require__(27);
+	var uiRules = __webpack_require__(31);
+
+	// Signin actions
+	var signUpTemplate = __webpack_require__(35);
+	var signInTemplate = __webpack_require__(36);
+
+	var resetBody = function resetBody() {
+	  $('#page-wrapper').empty();
+	};
+
+	var up = function up() {
+	  resetBody();
+	  $('#page-wrapper').append(signUpTemplate());
+	  $('.signUp-button').on('click', function () {
+	    var item = new FormData(document.querySelector('form[role="signUp"]'));
+	    api.signUp(item, function () {
+	      append.signedInNav();
+	      append.signedInBody();
+	      uiRules.start();
+	    });
+	    resetBody();
+	    $('.signUp').append(signUpTemplate());
+	    console.log('hit up');
+	  });
+	};
+
+	var In = function In() {
+	  resetBody();
+	  $('#page-wrapper').append(signInTemplate());
+	  console.log('hit in');
+	  $('.signIn-button').on('click', function () {
+	    var item = new FormData(document.querySelector('form[role="signIn"]'));
+	    api.signIn(item, function (data) {
+	      append.signedInNav();
+	      append.signedInBody();
+	      uiRules.start();
+	    });
+	  });
+	};
+
+	module.exports = {
+	  up: up,
+	  In: In
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ },
+/* 25 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	// Require js files below
+	// dont for get to checkout localstorage!
+	//"http://httpbin.org/post",
+
+	var env = __webpack_require__(26);
+
+	var setStorage = function setStorage(data) {
+	  var userInfo = data.userAttributes;
+	  localStorage.setItem('email', userInfo.email);
+	  localStorage.setItem('id', userInfo.id);
+	  localStorage.setItem('token', userInfo.token);
+	};
+
+	var signUp = function signUp(item, onSuccess, onFailure) {
+	  return new Promise(function (resolve, reject) {
+	    $.ajax({
+	      url: env.url + 'sign-up',
+	      type: 'POST',
+	      contentType: false, // Needed for FormData
+	      processData: false, // Needed for FormData This is because item
+	      data: item // item is referancing the new object called 'item'.
+	    }).done(function (result) {
+	      return resolve(result);
+	    }).fail(function (reason) {
+	      return reject(reason);
+	    });
+	  }).then(function (data) {
+	    return setStorage(data);
+	  }).then(onSuccess).catch(onFailure);
+	};
+
+	var signIn = function signIn(item, onSuccess, onFailure) {
+	  return new Promise(function (resolve, reject) {
+	    $.ajax({
+	      url: env.url + 'sign-in',
+	      type: 'POST',
+	      contentType: false, // Needed for FormData
+	      processData: false, // Needed for FormData This is because item
+	      data: item }). // item is referancing the new object called 'item'.
+	    done(function (result) {
+	      return resolve(result);
+	    }).fail(function (reason) {
+	      return reject(reason);
+	    });
+	  }).then(function (data) {
+	    return setStorage(data);
+	  }).then(onSuccess).catch(onFailure);
+	};
+
+	var signOut = function signOut(onSuccess, onFailure) {
+	  return new Promise(function (resolve, reject) {
+	    $.ajax({
+	      url: env.url + 'sign-out/' + localStorage.getItem('id'),
+	      type: 'DELETE',
+	      headers: {
+	        Authorization: 'Token token=' + localStorage.getItem('token')
+	      }
+	    }).done(function (result) {
+	      return resolve(result);
+	    }) // HACK: This should be resolve but backends is sending wrong Status Code foward.
+	    .fail(function (reason) {
+	      return reject(reason);
+	    });
+	  }).then(function (data) {
+	    localStorage.clear();
+	    console.log('Success is good!');
+	  }).then(onSuccess).catch(function () {
+	    //localStorage.clear();
+	    console.log('failure is good!');
+	    // /onFailure;
+	  });
+	};
+
+	var changePass = function changePass(item, onSuccess, onFailure) {
+	  return new Promise(function (resolve, reject) {
+	    $.ajax({
+	      url: env.url + 'change-password/' + localStorage.getItem('id'),
+	      type: 'PATCH',
+	      headers: {
+	        Authorization: 'Token token=' + localStorage.getItem('token')
+	      },
+	      contentType: false, // Needed for FormData
+	      processData: false, // Needed for FormData This is because item
+	      data: item // item is referancing the new object called 'item'.
+	    }).done(function (result) {
+	      return resolve(result);
+	    }).fail(function (reason) {
+	      return reject(reason);
+	    });
+	  }).then(function (data) {
+	    localStorage.setItem('token', data.userAttributes.token);
+	  }).then(onSuccess).catch(onFailure);
+	};
+
+	module.exports = {
+	  signUp: signUp,
+	  signIn: signIn,
+	  signOut: signOut,
+	  changePass: changePass
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ },
+/* 26 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var env = {
+	  url: 'http://localhost:3000/'
+	};
+
+	module.exports = env;
+
+/***/ },
+/* 27 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+
+	var api = __webpack_require__(25);
+	// How the Navigation bar should look for signed in user
+	var signedInNav = function signedInNav() {
+	  var signOutTemplate = __webpack_require__(28);
+	  var whenLogedinNavTemplate = __webpack_require__(29);
+	  $('.userDropDown').empty();
+	  $('.userDropDown').append(whenLogedinNavTemplate());
+	  $('.signOut-button').on('click', function () {
+	    api.signOut();
+	    $('#page-wrapper').empty();
+	    $('.signOut').append(signOutTemplate());
+	  });
+	  changePass();
+	};
+
+	// How the body should look when a user
+	var signedInBody = function signedInBody() {
+	  $('#page-wrapper').empty();
+	  var dashTemplate = __webpack_require__(23);
+	  $('#page-wrapper').append(dashTemplate());
+	};
+
+	var changePass = function changePass() {
+	  $('.changePass-nav-button').on('click', function () {
+	    var changePassTemplate = __webpack_require__(30);
+	    $('#page-wrapper').empty();
+	    $('#page-wrapper').append(changePassTemplate());
+	    $('.changePass-button').on('click', function () {
+	      var item = new FormData(document.querySelector('form[role="changePass"]'));
+	      api.changePass(item, signedInBody);
+	    });
+	  });
+	};
+
+	module.exports = {
+	  signedInNav: signedInNav,
+	  signedInBody: signedInBody
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ },
+/* 28 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(4);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    return "  <div class=\"container jumbotron row\">\n      <div class=\"col-md-4 col-md-offset-4\">\n          <div class=\"login-panel panel panel-default\">\n              <div class=\"panel-heading\">\n                  <h3 class=\"panel-title\">Please Sign Out</h3>\n              </div>\n              <div class=\"panel-body\">\n                <a class=\"signOut-button btn btn-lg btn-danger btn-block\">Sign Out</a>\n              </div>\n          </div>\n      </div>\n  </div>\n";
+	},"useData":true});
+
+/***/ },
+/* 29 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(4);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    return "<li>\n  <a><i class=\"fa fa-fw fa-user\"></i> Profile</a>\n</li>\n<li>\n  <a><i class=\"fa fa-fw fa-envelope\"></i> Inbox</a>\n</li>\n<li>\n  <a><i class=\"fa fa-fw fa-gear\"></i> Settings</a>\n</li>\n<li class=\"changePass-nav-button\">\n  <a><i class=\"fa fa-fw fa-power-off\"></i> Change Password</a>\n</li>\n<li class=\"divider\"></li>\n<li class=\"signOut-button\">\n  <a><i class=\"fa fa-fw fa-power-off\"></i> Log Out</a>\n</li>\n";
+	},"useData":true});
+
+/***/ },
+/* 30 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(4);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    return "<div class=\"container jumbotron row\">\n  <div class=\"col-md-4 col-md-offset-4\">\n    <div class=\"login-panel panel panel-default\">\n      <div class=\"panel-heading\">\n        <h3 class=\"panel-title\">Change Password</h3>\n      </div>\n      <div class=\"panel-body\">\n        <form role=\"changePass\">\n          <fieldset>\n            <div class=\"form-group\">\n              <input name=\"passwords[old]\" type=\"password\" class=\"form-control\" placeholder=\"Old Password\" required>\n            </div>\n            <div class=\"form-group\">\n              <input name=\"passwords[new]\" type=\"password\" class=\"form-control\" placeholder=\"New Password\" value=\"passwordTest\" required>\n            </div>\n            <!-- Change this to a button or input when using this as a form -->\n            <a class=\"changePass-button btn btn-lg btn-info btn-block\">Change Password</a>\n          </fieldset>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>\n";
+	},"useData":true});
+
+/***/ },
+/* 31 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+
+	var apiRules = __webpack_require__(32);
+	var rulesTemplate = __webpack_require__(33);
+	var rulesTableTemplate = __webpack_require__(34);
+
+	var ruleTable = function ruleTable(data) {
+	  $('.table').append(rulesTableTemplate(data));
+	};
 
 	var start = function start() {
 	  $('li[data-role="rules"]').on('click', function () {
 	    console.log('rules clicked');
-	    $('#page-wrapper').empty();
-	    $('#page-wrapper').append(rulesTemplate());
+	    new Promise(function (resolve, reject) {
+	      $('#page-wrapper').empty();
+	      $('#page-wrapper').append(rulesTemplate());
+	      return resolve();
+	      if (false) {
+	        reject();
+	      }
+	    }).then(function () {
+	      $('#page-wrapper').empty();
+	      $('#page-wrapper').append(rulesTemplate());
+	    }).then(function () {
+	      apiRules.index(ruleTable);
+	    })
 	    //history.pushState('stateObj', "rules", "rules");
+	    .catch(console.log);
 	  });
 	};
 
@@ -11180,34 +11464,115 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 24 */
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	// Require js files below
+	// dont for get to checkout localstorage!
+	//"http://httpbin.org/post",
+
+	var env = __webpack_require__(26);
+
+	var index = function index(onSuccess, onFailure) {
+	  return new Promise(function (resolve, reject) {
+	    $.ajax({
+	      url: env.url + "rules/",
+	      method: 'GET',
+	      headers: {
+	        Authorization: 'Token token=' + localStorage.getItem('token')
+	      },
+	      dataType: 'json'
+	    }).done(function (result) {
+	      return resolve(result);
+	    }).fail(function (reason) {
+	      return reject(reason);
+	    });
+	  }).then(onSuccess).catch(onFailure);
+	};
+
+	module.exports = {
+	  index: index
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ },
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Handlebars = __webpack_require__(4);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "<div class=\"container-fluid\">\n\n  <!-- Page Heading -->\n  <div class=\"row\">\n    <div class=\"col-lg-12\">\n      <h1 class=\"page-header\">\n        Rules\n      </h1>\n      <ol class=\"breadcrumb\">\n        <li>\n          <i class=\"fa fa-dashboard\"></i><a>Dashboard</a>\n        </li>\n        <li class=\"active\">\n          <i class=\"fa fa-edit\"></i> Rules\n        </li>\n      </ol>\n    </div>\n  </div>\n  <!-- /.row -->\n\n  <div class=\"col-lg-12\">\n    <h2>Rules Currently Set </h2>\n    <div class=\"table-responsive\">\n      <table class=\"table table-bordered table-hover table-striped\">\n        <thead>\n          <tr>\n            <th>Name</th>\n            <th>Temperature</th>\n            <th>Operator</th>\n            <th>Action</th>\n            <th>Active</th>\n            <th>Edit</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>Boiler Over Heat</td>\n            <td>210</td>\n            <td> > </td>\n            <td>Pump Off</td>\n            <td>\n              <span>\n                <input type=\"checkbox\">\n              </span>\n            </td>\n            <td>\n              Delete update Modify\n            </td>\n          </tr>\n          <tr>\n            <td>Boiler Under Temperature</td>\n            <td>163</td>\n            <td> < </td>\n            <td>Pump Off</td>\n            <td>\n              <span>\n                <input type=\"checkbox\">\n              </span>\n            </td>\n            <td>\n              Delete update Modify\n            </td>\n          </tr>\n          <tr>\n            <td>Pump on</td>\n            <td>195</td>\n            <td> > </td>\n            <td>Pump on</td>\n            <td>\n              <span>\n                <input type=\"checkbox\">\n              </span>\n            </td>\n            <td>\n              Delete update Modify\n          </tr>\n          <tr>\n            <td>\n              <div class=\"form-group\">\n                <input class=\"form-control\" placeholder=\"Name\">\n              </div>\n            </td>\n            <td>\n              <div class=\"form-group\">\n                <input class=\"form-control\" placeholder=\"Alert\">\n              </div>\n            </td>\n            <td>\n              <div class=\"form-group\">\n                <select class=\"form-control\">\n                  <option> > </option>\n                  <option> < </option>\n                  <option> <= </option>\n                  <option> >= </option>\n                </select>\n              </div>\n            </td>\n            <td>\n              <div class=\"form-group\">\n                <select class=\"form-control\">\n                  <option> Pump On </option>\n                  <option> Pump Off </option>\n                </select>\n              </div>\n            </td>\n            <td>\n              <input type=\"checkbox\">\n            </td>\n            <td>\n              <!-- This is blank -->\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n</div>\n<!-- /.row -->\n";
+	    return "<div class=\"container-fluid\">\n\n  <!-- Page Heading -->\n  <div class=\"row\">\n    <div class=\"col-lg-12\">\n      <h1 class=\"page-header\">\n        Rules\n      </h1>\n      <ol class=\"breadcrumb\">\n        <li>\n          <i class=\"fa fa-dashboard\"></i><a>Dashboard</a>\n        </li>\n        <li class=\"active\">\n          <i class=\"fa fa-edit\"></i> Rules\n        </li>\n      </ol>\n    </div>\n  </div>\n  <!-- /.row -->\n\n  <div class=\"col-lg-12\">\n    <h2>Rules Currently Set </h2>\n    <div class=\"table-responsive\">\n      <table class=\"table table-bordered table-hover table-striped\">\n        <!-- Rendered by /rules/table.handlebars -->\n      </table>\n    </div>\n  </div>\n</div>\n<!-- /.row -->\n";
 	},"useData":true});
 
 /***/ },
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */,
+/* 34 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(4);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data) {
+	    var alias1=container.lambda, alias2=container.escapeExpression;
+
+	  return "<tr data-task-id='"
+	    + alias2(alias1((depth0 != null ? depth0.id : depth0), depth0))
+	    + "'>\n  <td>"
+	    + alias2(alias1((depth0 != null ? depth0.name : depth0), depth0))
+	    + "</td>\n  <td>"
+	    + alias2(alias1((depth0 != null ? depth0.temperature : depth0), depth0))
+	    + "</td>\n  <td>"
+	    + alias2(alias1((depth0 != null ? depth0.operator : depth0), depth0))
+	    + "</td>\n  <td>"
+	    + alias2(alias1((depth0 != null ? depth0.action : depth0), depth0))
+	    + "</td>\n  <td>\n    <span>\n      <input type=\"checkbox\">\n    </span>\n  </td>\n  <td>\n    <span class=\"pull-right\">\n      <button class=\"btn btn-xs btn-info\">\n        <span class=\"glyphicons glyphicons-pencil\">EDIT</span>\n      </button>\n      <button class=\"btn btn-xs btn-warning\">\n        <span class=\"glyphicon glyphicon-trash\"></span>\n      </button>\n    </span>\n  </td>\n</tr>\n";
+	},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    var stack1;
+
+	  return "<thead>\n  <tr>\n    <th>Name</th>\n    <th>Temperature</th>\n    <th>Operator</th>\n    <th>Action</th>\n    <th>Active</th>\n    <th>Edit</th>\n  </tr>\n</thead>\n<tbody>\n\n"
+	    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.allRules : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+	    + "  <tr>\n    <td>\n      <div class=\"form-group\">\n        <input class=\"form-control\" placeholder=\"Name\">\n      </div>\n    </td>\n    <td>\n      <div class=\"form-group\">\n        <input class=\"form-control\" placeholder=\"Alert\">\n      </div>\n    </td>\n    <td>\n      <div class=\"form-group\">\n        <select class=\"form-control\">\n          <option> > </option>\n          <option> < </option>\n          <option> <= </option>\n          <option> >= </option>\n        </select>\n      </div>\n    </td>\n    <td>\n      <div class=\"form-group\">\n        <select class=\"form-control\">\n          <option> Pump On </option>\n          <option> Pump Off </option>\n        </select>\n      </div>\n    </td>\n    <td>\n      <input type=\"checkbox\">\n    </td>\n    <td>\n      <button class=\"btn btn-md btn-info\">\n        <span>Submit</span>\n      </button>\n    </td>\n  </tr>\n</tbody>\n";
+	},"useData":true});
+
+/***/ },
+/* 35 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(4);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    return "  <div class=\"container jumbotron row\">\n      <div class=\"col-md-4 col-md-offset-4\">\n          <div class=\"login-panel panel panel-default\">\n              <div class=\"panel-heading\">\n                  <h3 class=\"panel-title\">Please Sign UP</h3>\n              </div>\n              <div class=\"panel-body\">\n                  <form role=\"signUp\">\n                      <fieldset>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[email]\" type=\"email\" class=\"form-control\" placeholder=\"Email address\" value=\"signup@email.com\" required autofocus>\n                          </div>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[password]\" type=\"password\" class=\"form-control\" placeholder=\"Password\" value=\"signup password\" required>\n                          </div>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[password_confirmation]\" type=\"password\" class=\"form-control\" placeholder=\"Confirm Password\" value=\"signup password\" required>\n                          </div>\n                          <div class=\"checkbox\">\n                              <label>\n                                  <input name=\"remember\" type=\"checkbox\" value=\"true\">Remember Me\n                              </label>\n                          </div>\n                          <!-- Change this to a button or input when using this as a form -->\n                          <a class=\"signUp-button btn btn-lg btn-warning btn-block\">Sign up</a>\n                      </fieldset>\n                  </form>\n              </div>\n          </div>\n      </div>\n  </div>\n";
+	},"useData":true});
+
+/***/ },
+/* 36 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(4);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    return "  <div class=\"container jumbotron row\">\n      <div class=\"col-md-4 col-md-offset-4\">\n          <div class=\"login-panel panel panel-default\">\n              <div class=\"panel-heading\">\n                  <h3 class=\"panel-title\">Please Sign In</h3>\n              </div>\n              <div class=\"panel-body\">\n                  <form role=\"signIn\">\n                      <fieldset>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[email]\" type=\"email\" class=\"form-control\" placeholder=\"Email address\" required autofocus>\n                          </div>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[password]\" type=\"password\" class=\"form-control\" placeholder=\"Password\" required>\n                          </div>\n                          <div class=\"checkbox\">\n                              <label>\n                                  <input name=\"remember\" type=\"checkbox\" value=\"true\">Remember Me\n                              </label>\n                          </div>\n                          <!-- Change this to a button or input when using this as a form -->\n                          <a class=\"signIn-button btn btn-lg btn-success btn-block\">signIn</a>\n                      </fieldset>\n                  </form>\n              </div>\n          </div>\n      </div>\n  </div>\n";
+	},"useData":true});
+
+/***/ },
 /* 37 */,
 /* 38 */,
 /* 39 */,
 /* 40 */,
 /* 41 */,
-/* 42 */
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(jQuery) {/*!
