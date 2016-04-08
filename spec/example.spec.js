@@ -1,9 +1,9 @@
 'use strict';
 
-var example = require('../assets/scripts/example');
+var index = require('../assets/scripts/index');
 
-describe('Example', function () {
+describe('index', function () {
   it('is true', function () {
-    expect(example).toBe(true);
+    expect(index).toBe(true);
   });
 });
