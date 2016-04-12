@@ -28,12 +28,14 @@ let create = function(item, onSuccess, onFailure) {
       type: 'POST',
       contentType: false,                     // Needed for FormData
       processData: false,                     // Needed for FormData This is because item
+      headers: {
+        Authorization: 'Token token='+ localStorage.getItem('token'),
+      },
       data: item                              // item is referancing the new object called 'item'.
     })
     .done((result) => resolve(result))
     .fail((reason) => reject(reason));
   })
-  .then((data) => setStorage(data))
   .then(onSuccess)
   .catch(onFailure);
 };
