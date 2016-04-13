@@ -8,37 +8,33 @@ let uiRules = require('../ui/rules.js');
 let signUpTemplate = require('../handlebars/sign/signUp.handlebars');
 let signInTemplate = require('../handlebars/sign/signIn.handlebars');
 
-let resetBody = function () {
-  $('#page-wrapper').empty();
+let signedInView = function () {
+  append.signedInNav();
+  append.signedInBody();
+  uiRules.start();
 };
 
 let up = function () {
-  resetBody();
+  $('#page-wrapper').empty();
   $('#page-wrapper').append(signUpTemplate());
   $('.signUp-button').on('click', function () {
-    let item = new FormData(document.querySelector('form[role="signUp"]'));
-    api.signUp(item, function () {
-      append.signedInNav();
-      append.signedInBody();
-      uiRules.start();
-    });
-    resetBody();
+    $('#page-wrapper').empty();
     $('.signUp').append(signUpTemplate());
-    console.log('hit up');
+    let item = new FormData(document.querySelector('form[role="signUp"]'));
+    api.signUp(item)
+    .then(() => signedInView())
+    .catch(console.log);
   });
 };
 
 let In = function () {
-  resetBody();
+  $('#page-wrapper').empty();
   $('#page-wrapper').append(signInTemplate());
-  console.log('hit in');
   $('.signIn-button').on('click', function () {
     let item = new FormData(document.querySelector('form[role="signIn"]'));
-    api.signIn(item, function (data) {
-      append.signedInNav();
-      append.signedInBody();
-      uiRules.start();
-    });
+    api.signIn(item)
+    .then(() => signedInView())
+    .catch(console.log);
   });
 };
 
