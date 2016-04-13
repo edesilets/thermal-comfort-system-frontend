@@ -1,44 +1,39 @@
 'use strict';
 
-const apiRules = require('../../api-req/rules');
+const api = require('../../api-req/rules');
 
+let rulesTemplate = require('../../handlebars/rules.handlebars');
 let rulesTableTemplate = require('../../handlebars/rules/table.handlebars');
-let rulesFormTemplate = require('../../handlebars/rules/form.handlebars');
-// Rules table functions
-let table = function () {
-  apiRules.index(function (data) {
-    $('.table').append(rulesTableTemplate(data));
-  })
-  .then(() => ruleForm())
-  .then(() => createRule());
-};
+let newRuleTemplate = require('../../handlebars/rules/form.handlebars');
 
-// Form functions
-let ruleForm = function () {
-  $('button[name="addRule"]').on('click', function () {
-    console.log('this is the new rule');
-    $('#page-wrapper').empty();
-    $('#page-wrapper').append(rulesFormTemplate());
-    createRule();
-  });
+// Rules table functions
+let createTable = function () {
+  $('#page-wrapper').empty();
+  $('#page-wrapper').append(rulesTemplate());
+  api.getAllRules()
+  .then(function (data) {
+    $('.table').append(rulesTableTemplate(data));
+    $('button[name="addRule"]').on('click', function () {
+      $('#page-wrapper').empty();
+      $('#page-wrapper').append(newRuleTemplate());
+      $('button[name="createRule"]').on('click', createRule);
+    });
+  })
+  .catch(console.err);
 };
 
 let createRule = function () {
-  $('button[name="createRule"]').on('click', function () {
-    let item = new FormData(document.querySelector('form[role="newRule"]'));
-    apiRules.create(item, function () {
-      $('#page-wrapper').empty();
-      $('#page-wrapper').append(rulesFormTemplate());
-      // Reassign click handler to create a rule button
-      createRule();
-      console.log('Sucessfull Creation of rules');
-    }, function (data) {
-      console.log('Issue: (Rules) Validation on Creation of a Rule #1 ');
-      console.error(data);
-    });
+  let item = new FormData(document.querySelector('form[role="newRule"]'));
+  api.createRule(item)
+  .then(function () {
+    createTable();
+  })
+  .catch(function (data) {
+    console.log('Issue: (Rules) Validation on Creation of a Rule #1 ');
+    console.error(data);
   });
 };
 
 module.exports = {
-  table,
+  createTable,
 };

@@ -4,7 +4,7 @@
 //"http://httpbin.org/post",
 const env = require('../env.js');
 
-let index = function(onSuccess, onFailure) {
+let getAllRules = function() {
   return new Promise(function(resolve, reject) {
     $.ajax({
       url: env.url + "rules/",
@@ -17,11 +17,9 @@ let index = function(onSuccess, onFailure) {
     .done((result) => resolve(result))
     .fail((reason) => reject(reason));
   })
-  .then(onSuccess)
-  .catch(onFailure);
 };
 
-let create = function(item, onSuccess, onFailure) {
+let createRule = function(item) {
   return new Promise(function(resolve, reject) {
     $.ajax({
       url: env.url + 'rules',
@@ -36,11 +34,9 @@ let create = function(item, onSuccess, onFailure) {
     .done((result) => resolve(result))
     .fail((reason) => reject(reason));
   })
-  .then(onSuccess)
-  .catch(onFailure);
 };
 
 module.exports = {
-index,
-create,
+  getAllRules,
+  createRule,
 };
