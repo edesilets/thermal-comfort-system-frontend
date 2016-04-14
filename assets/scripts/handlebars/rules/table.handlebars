@@ -1,26 +1,26 @@
 <thead>
   <tr>
+    <th>Active</th>
     <th>Name</th>
     <th>Temperature</th>
     <th>Operator</th>
     <th>Action</th>
-    <th>Active</th>
     <th>Edit</th>
   </tr>
 </thead>
-<tbody>
 
+<tbody>
 {{#each this.allRules }}
 <tr data-task-id='{{this.id}}'>
-  <td>{{this.name}}</td>
-  <td>{{this.temperature}}</td>
-  <td>{{this.operator}}</td>
-  <td>{{this.action}}</td>
   <td>
     <span>
       <input type="checkbox">
     </span>
   </td>
+  <td>{{this.name}}</td>
+  <td>{{this.temperature}}</td>
+  <td>{{this.operator}}</td>
+  <td>{{this.action}}</td>
   <td>
     <span class="pull-right">
       <button class="btn btn-xs btn-info">
@@ -33,42 +33,18 @@
   </td>
 </tr>
 {{/each}}
-  <tr>
-    <td>
-      <div class="form-group">
-        <input class="form-control" placeholder="Name">
-      </div>
-    </td>
-    <td>
-      <div class="form-group">
-        <input class="form-control" placeholder="Alert">
-      </div>
-    </td>
-    <td>
-      <div class="form-group">
-        <select class="form-control">
-          <option> > </option>
-          <option> < </option>
-          <option> <= </option>
-          <option> >= </option>
-        </select>
-      </div>
-    </td>
-    <td>
-      <div class="form-group">
-        <select class="form-control">
-          <option> Pump On </option>
-          <option> Pump Off </option>
-        </select>
-      </div>
-    </td>
-    <td>
-      <input type="checkbox">
-    </td>
-    <td>
-      <button class="btn btn-md btn-info">
-        <span>Submit</span>
-      </button>
-    </td>
-  </tr>
+  <tfoot class="full-width">
+    <tr>
+      <th colspan="5">
+        <button class="btn btn-md btn-primary" type="button" name="approveCheckmarks">
+          Approve
+        </button>
+      </th>
+      <th colspan="1">
+        <button class="btn btn-md btn-primary" type="button" name="addRule">
+          <span class="glyphicons glyphicons-user"></span>ADD
+        </button>
+      </th>
+    </tr>
+  </tfoot>
 </tbody>
