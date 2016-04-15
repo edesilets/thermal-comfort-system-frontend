@@ -3,7 +3,7 @@
 const env = require('../env.js');
 
 let setStorage = function (data) {
-  let userInfo = data.userAttributes;
+  let userInfo = data.user;
   localStorage.setItem('email', userInfo.email);
   localStorage.setItem('id', userInfo.id);
   localStorage.setItem('token', userInfo.token);
@@ -48,7 +48,7 @@ let signOut = function() {
           Authorization: 'Token token=' + localStorage.getItem('token'),
         }
     })
-    .done((result) => resolve(result))   // HACK: This should be resolve but backends is sending wrong Status Code foward.
+    .done((result) => resolve(result))   // HACK: This should be resolve but backends is sending wrong Status Code forward.
     .fail((reason) => reject(reason));
   })
 };
@@ -67,9 +67,6 @@ let changePassword = function(item) {
     })
     .done((result) => resolve(result))
     .fail((reason) => reject(reason));
-  })
-  .then(function (data) {
-    localStorage.setItem('token', data.userAttributes.token);
   })
 };
 
