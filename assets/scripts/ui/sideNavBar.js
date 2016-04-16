@@ -2,12 +2,12 @@
 
 let rules = require('./rules/createRule');
 
-let start = function() {
-  $('li[data-role="rules"]').on('click', function() {
+let bindNavBarButtons = function() {
+  $('#home [data-role="rules"]').on('click', function() {
     rules.createTable();
   });
 };
 
 module.exports = {
-  start
+  bindNavBarButtons
 };

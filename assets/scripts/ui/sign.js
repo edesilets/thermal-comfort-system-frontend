@@ -1,7 +1,7 @@
 'use strict';
 
 let api = require('../api-req/access');
-let uiRules = require('../ui/rules.js');
+let ui = require('../ui/sideNavBar');
 
 // Signin actions
 let signUpTemplate = require('../handlebars/sign/signUp.handlebars');
@@ -25,7 +25,7 @@ let signedInBody = function () {
 let signedInView = function () {
   signedInNav();
   signedInBody();
-  uiRules.start();
+  ui.bindNavBarButtons();
 };
 
 let bindSignUp = function () {
