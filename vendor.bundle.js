@@ -99,7 +99,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(2);
-	module.exports = __webpack_require__(54);
+	module.exports = __webpack_require__(57);
 
 
 /***/ },
@@ -111,19 +111,16 @@
 	// handlebars template require below
 	// Views
 
-	var whenLogedoutNavTemplate = __webpack_require__(3);
-	var dashTemplate = __webpack_require__(23);
+	var dashTemplate = __webpack_require__(3);
 
-	var uiSign = __webpack_require__(24);
+	var uiSign = __webpack_require__(23);
 
 	var init = function init() {
-	  // Main Functionaliy
-	  //ADD IF STATEMENT FOR localStorage CHECK IF USER IS LOGGED IN.
-	  $('.userDropDown').append(whenLogedoutNavTemplate());
-	  $('#page-wrapper').append(dashTemplate());
-	  $('li[data-role="login"]').on('click', uiSign.In);
-	  $('li[data-role="signup"]').on('click', uiSign.up);
-	  // Other functions below
+	  if (localStorage.getItem('token') && localStorage.getItem('id')) {
+	    uiSign.signedInView();
+	  } else {
+	    uiSign.signClickHandlers();
+	  }
 	};
 
 	$(document).ready(init);
@@ -9986,7 +9983,7 @@
 	var Handlebars = __webpack_require__(4);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "<li data-role=\"login\">\n  <a><i class=\"fa fa-fw fa-power-off\"></i> Log In</a>\n</li>\n<li data-role=\"signup\">\n  <a><i class=\"fa fa-fw fa-power-off\"></i> Sign Up</a>\n</li>\n";
+	    return "<div class=\"container-fluid\">\n\n  <!-- Page Heading -->\n  <div class=\"row\">\n    <div class=\"col-lg-12\">\n      <h1 class=\"page-header\">\n        Dashboard <small>Overview</small>\n      </h1>\n      <ol class=\"breadcrumb\">\n        <li class=\"active\">\n          <i class=\"fa fa-dashboard\"></i> Dashboard\n        </li>\n      </ol>\n    </div>\n  </div>\n  <!-- /.row -->\n\n  <div class=\"row\">\n    <div class=\"col-lg-6\">\n      <div class=\"panel panel-default\">\n        <div class=\"panel-heading\">\n          <h3 class=\"panel-title\"></i> Basement Boiler</h3>\n        </div>\n        <div class=\"panel-body\">\n          <div class=\"row\">\n            <div class=\"col-lg-6 col-md-6\">\n              <div class=\"panel panel-primary\">\n                <div class=\"panel-heading\">\n                  <div class=\"row\">\n                    <div class=\"col-xs-3\">\n                      <i class=\"wi wi-thermometer\"></i>\n                    </div>\n                    <div class=\"col-xs-9 text-right\">\n                      <div class=\"huge\">175&deg;F</div>\n                      <!-- <div>New Comments!</div> -->\n                    </div>\n                  </div>\n                </div>\n                <a href=\"#\">\n                  <div class=\"panel-footer\">\n                    <span class=\"pull-left\">View Details</span>\n                    <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                    <div class=\"clearfix\"></div>\n                  </div>\n                </a>\n              </div>\n            </div>\n            <div class=\"col-lg-6 col-md-6\">\n              <div class=\"panel panel-green\">\n                <div class=\"panel-heading\">\n                  <div class=\"row\">\n                    <div class=\"col-xs-3\">\n                      <!-- <i class=\"fa fa-tasks fa-5x\"></i> -->\n                    </div>\n                    <div class=\"col-xs-9 text-right\">\n                      <div class=\"huge\">162&deg;F</div>\n                      <!-- <div>New Tasks!</div> -->\n                    </div>\n                  </div>\n                </div>\n                <a href=\"#\">\n                  <div class=\"panel-footer\">\n                    <span class=\"pull-left\">View Details</span>\n                    <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                    <div class=\"clearfix\"></div>\n                  </div>\n                </a>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"row\"> <!-- Coal shed  and basement boiler row-->\n      <div class=\"col-lg-6\">\n        <div class=\"panel panel-default\">\n          <div class=\"panel-heading\">\n            <h3 class=\"panel-title\"></i> Coal Shed</h3>\n          </div>\n          <div class=\"panel-body\">\n            <div class=\"row\">\n\n              <div class=\"col-lg-6 col-md-6\">\n                <div class=\"panel panel-yellow\">\n                  <div class=\"panel-heading\">\n                    <div class=\"row\">\n                      <div class=\"col-xs-3\">\n                        <!-- <i class=\"fa fa-shopping-cart fa-5x\"></i> -->\n                      </div>\n                      <div class=\"col-xs-9 text-right\">\n                        <div class=\"huge\">210&deg;F</div>\n                        <!-- <div>New Orders!</div> -->\n                      </div>\n                    </div>\n                  </div>\n                  <a href=\"#\">\n                    <div class=\"panel-footer\">\n                      <span class=\"pull-left\">View Details</span>\n                      <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                      <div class=\"clearfix\"></div>\n                    </div>\n                  </a>\n                </div>\n              </div>\n              <div class=\"col-lg-6 col-md-6\">\n                <div class=\"panel panel-red\">\n                  <div class=\"panel-heading\">\n                    <div class=\"row\">\n                      <div class=\"col-xs-3\">\n                        <!-- <i class=\"fa fa-support fa-5x\"></i> -->\n                      </div>\n                      <div class=\"col-xs-9 text-right\">\n                        <div class=\"huge\">158&deg;F</div>\n                        <!-- <div>Support Tickets!</div> -->\n                      </div>\n                    </div>\n                  </div>\n                  <a href=\"#\">\n                    <div class=\"panel-footer\">\n                      <span class=\"pull-left\">View Details</span>\n                      <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                      <div class=\"clearfix\"></div>\n                    </div>\n                  </a>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n      <!-- /.row -->\n    </div>\n    <!-- /.row -->\n  </div>\n  <!-- /.container-fluid -->\n</div>\n<!-- /#page-wrapper -->\n";
 	},"useData":true});
 
 /***/ },
@@ -11168,85 +11165,130 @@
 /* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Handlebars = __webpack_require__(4);
-	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
-	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "<div class=\"container-fluid\">\n\n  <!-- Page Heading -->\n  <div class=\"row\">\n    <div class=\"col-lg-12\">\n      <h1 class=\"page-header\">\n        Dashboard <small>Overview</small>\n      </h1>\n      <ol class=\"breadcrumb\">\n        <li class=\"active\">\n          <i class=\"fa fa-dashboard\"></i> Dashboard\n        </li>\n      </ol>\n    </div>\n  </div>\n  <!-- /.row -->\n\n  <div class=\"row\">\n    <div class=\"col-lg-6\">\n      <div class=\"panel panel-default\">\n        <div class=\"panel-heading\">\n          <h3 class=\"panel-title\"></i> Basement Boiler</h3>\n        </div>\n        <div class=\"panel-body\">\n          <div class=\"row\">\n            <div class=\"col-lg-6 col-md-6\">\n              <div class=\"panel panel-primary\">\n                <div class=\"panel-heading\">\n                  <div class=\"row\">\n                    <div class=\"col-xs-3\">\n                      <i class=\"wi wi-thermometer\"></i>\n                    </div>\n                    <div class=\"col-xs-9 text-right\">\n                      <div class=\"huge\">175&deg;F</div>\n                      <!-- <div>New Comments!</div> -->\n                    </div>\n                  </div>\n                </div>\n                <a href=\"#\">\n                  <div class=\"panel-footer\">\n                    <span class=\"pull-left\">View Details</span>\n                    <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                    <div class=\"clearfix\"></div>\n                  </div>\n                </a>\n              </div>\n            </div>\n            <div class=\"col-lg-6 col-md-6\">\n              <div class=\"panel panel-green\">\n                <div class=\"panel-heading\">\n                  <div class=\"row\">\n                    <div class=\"col-xs-3\">\n                      <!-- <i class=\"fa fa-tasks fa-5x\"></i> -->\n                    </div>\n                    <div class=\"col-xs-9 text-right\">\n                      <div class=\"huge\">162&deg;F</div>\n                      <!-- <div>New Tasks!</div> -->\n                    </div>\n                  </div>\n                </div>\n                <a href=\"#\">\n                  <div class=\"panel-footer\">\n                    <span class=\"pull-left\">View Details</span>\n                    <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                    <div class=\"clearfix\"></div>\n                  </div>\n                </a>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"row\"> <!-- Coal shed  and basement boiler row-->\n      <div class=\"col-lg-6\">\n        <div class=\"panel panel-default\">\n          <div class=\"panel-heading\">\n            <h3 class=\"panel-title\"></i> Coal Shed</h3>\n          </div>\n          <div class=\"panel-body\">\n            <div class=\"row\">\n\n              <div class=\"col-lg-6 col-md-6\">\n                <div class=\"panel panel-yellow\">\n                  <div class=\"panel-heading\">\n                    <div class=\"row\">\n                      <div class=\"col-xs-3\">\n                        <!-- <i class=\"fa fa-shopping-cart fa-5x\"></i> -->\n                      </div>\n                      <div class=\"col-xs-9 text-right\">\n                        <div class=\"huge\">210&deg;F</div>\n                        <!-- <div>New Orders!</div> -->\n                      </div>\n                    </div>\n                  </div>\n                  <a href=\"#\">\n                    <div class=\"panel-footer\">\n                      <span class=\"pull-left\">View Details</span>\n                      <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                      <div class=\"clearfix\"></div>\n                    </div>\n                  </a>\n                </div>\n              </div>\n              <div class=\"col-lg-6 col-md-6\">\n                <div class=\"panel panel-red\">\n                  <div class=\"panel-heading\">\n                    <div class=\"row\">\n                      <div class=\"col-xs-3\">\n                        <!-- <i class=\"fa fa-support fa-5x\"></i> -->\n                      </div>\n                      <div class=\"col-xs-9 text-right\">\n                        <div class=\"huge\">158&deg;F</div>\n                        <!-- <div>Support Tickets!</div> -->\n                      </div>\n                    </div>\n                  </div>\n                  <a href=\"#\">\n                    <div class=\"panel-footer\">\n                      <span class=\"pull-left\">View Details</span>\n                      <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                      <div class=\"clearfix\"></div>\n                    </div>\n                  </a>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n      <!-- /.row -->\n    </div>\n    <!-- /.row -->\n  </div>\n  <!-- /.container-fluid -->\n</div>\n<!-- /#page-wrapper -->\n";
-	},"useData":true});
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+
+	var api = __webpack_require__(24);
+	var ui = __webpack_require__(26);
+
+	// Signin actions
+	var signUpTemplate = __webpack_require__(34);
+	var signInTemplate = __webpack_require__(35);
+
+	// Dash Templates
+	var dashTemplate = __webpack_require__(3);
+	var changePassTemplate = __webpack_require__(36);
+	var whenLogedinNavTemplate = __webpack_require__(37);
+	var whenLogedOutNavTemplate = __webpack_require__(38);
+	var sideNavTemplate = __webpack_require__(39);
+
+	// How the body should look when a user
+	var signedInBody = function signedInBody() {
+	  $('#page-wrapper').empty();
+	  $('#page-wrapper').append(dashTemplate());
+	  $('.side-nav').empty();
+	  $('.side-nav').append(sideNavTemplate());
+	};
+
+	var signedInView = function signedInView() {
+	  signedInNav();
+	  signedInBody();
+	  ui.bindNavBarButtons();
+	};
+
+	var bindSignUp = function bindSignUp() {
+	  $('li[data-role="signup"]').on('click', function () {
+	    $('#page-wrapper').empty();
+	    $('#page-wrapper').append(signUpTemplate());
+	    $('.signUp-button').on('click', function () {
+	      var item = new FormData(document.querySelector('form[role="signUp"]'));
+	      api.signUp(item).then(function () {
+	        return signedInView();
+	      }).catch(function (data) {
+	        return console.error(data);
+	      });
+	    });
+	  });
+	};
+
+	var bindSignIn = function bindSignIn() {
+	  $('li[data-role="login"]').on('click', function () {
+	    $('#page-wrapper').empty();
+	    $('#page-wrapper').append(signInTemplate());
+	    $('.signIn-button').on('click', function () {
+	      var item = new FormData(document.querySelector('form[role="signIn"]'));
+	      api.signIn(item).then(function () {
+	        return signedInView();
+	      }).catch(function (data) {
+	        return console.error(data);
+	      });
+	    });
+	  });
+	};
+
+	var bindChangePassword = function bindChangePassword() {
+	  $('.changePass-nav-button').on('click', function () {
+	    $('#page-wrapper').empty();
+	    $('#page-wrapper').append(changePassTemplate());
+	    $('.changePass-button').on('click', function () {
+	      var item = new FormData(document.querySelector('form[role="changePass"]'));
+	      api.changePassword(item).then(signedInBody()).catch(function (data) {
+	        return console.error(data);
+	      });
+	    });
+	  });
+	};
+
+	// How the Navigation bar should look for signed in user
+	var signedInNav = function signedInNav() {
+	  $('.userDropDown').empty();
+	  $('.userDropDown').append(whenLogedinNavTemplate());
+	  $('.signOut-button').on('click', function () {
+	    api.signOut().then(function () {
+	      localStorage.clear();
+	      $('.side-nav').empty();
+	      $('.userDropDown').empty();
+	      $('.userDropDown').append(whenLogedOutNavTemplate());
+	      $('#page-wrapper').empty();
+	      $('#page-wrapper').append(dashTemplate());
+	      bindSignIn();
+	      bindSignUp();
+	    }).catch(function (data) {
+	      return console.error(data);
+	    });
+	  });
+	  bindChangePassword();
+	};
+
+	var signClickHandlers = function signClickHandlers() {
+	  $('.userDropDown').append(whenLogedOutNavTemplate());
+	  $('#page-wrapper').append(dashTemplate());
+	  bindSignIn();
+	  bindSignUp();
+	};
+
+	module.exports = {
+	  signedInView: signedInView,
+	  signClickHandlers: signClickHandlers
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
 /* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
-
-	var api = __webpack_require__(25);
-	var append = __webpack_require__(27);
-	var uiRules = __webpack_require__(31);
-
-	// Signin actions
-	var signUpTemplate = __webpack_require__(35);
-	var signInTemplate = __webpack_require__(36);
-
-	var resetBody = function resetBody() {
-	  $('#page-wrapper').empty();
-	};
-
-	var up = function up() {
-	  resetBody();
-	  $('#page-wrapper').append(signUpTemplate());
-	  $('.signUp-button').on('click', function () {
-	    var item = new FormData(document.querySelector('form[role="signUp"]'));
-	    api.signUp(item, function () {
-	      append.signedInNav();
-	      append.signedInBody();
-	      uiRules.start();
-	    });
-	    resetBody();
-	    $('.signUp').append(signUpTemplate());
-	    console.log('hit up');
-	  });
-	};
-
-	var In = function In() {
-	  resetBody();
-	  $('#page-wrapper').append(signInTemplate());
-	  console.log('hit in');
-	  $('.signIn-button').on('click', function () {
-	    var item = new FormData(document.querySelector('form[role="signIn"]'));
-	    api.signIn(item, function (data) {
-	      append.signedInNav();
-	      append.signedInBody();
-	      uiRules.start();
-	    });
-	  });
-	};
-
-	module.exports = {
-	  up: up,
-	  In: In
-	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ },
-/* 25 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function($) {'use strict';
-	// Require js files below
-	// dont for get to checkout localstorage!
 	//"http://httpbin.org/post",
 
-	var env = __webpack_require__(26);
+	var env = __webpack_require__(25);
 
 	var setStorage = function setStorage(data) {
-	  var userInfo = data.userAttributes;
+	  var userInfo = data.user;
 	  localStorage.setItem('email', userInfo.email);
 	  localStorage.setItem('id', userInfo.id);
 	  localStorage.setItem('token', userInfo.token);
 	};
 
-	var signUp = function signUp(item, onSuccess, onFailure) {
+	var signUp = function signUp(item) {
 	  return new Promise(function (resolve, reject) {
 	    $.ajax({
 	      url: env.url + 'sign-up',
@@ -11261,10 +11303,10 @@
 	    });
 	  }).then(function (data) {
 	    return setStorage(data);
-	  }).then(onSuccess).catch(onFailure);
+	  });
 	};
 
-	var signIn = function signIn(item, onSuccess, onFailure) {
+	var signIn = function signIn(item) {
 	  return new Promise(function (resolve, reject) {
 	    $.ajax({
 	      url: env.url + 'sign-in',
@@ -11279,10 +11321,10 @@
 	    });
 	  }).then(function (data) {
 	    return setStorage(data);
-	  }).then(onSuccess).catch(onFailure);
+	  });
 	};
 
-	var signOut = function signOut(onSuccess, onFailure) {
+	var signOut = function signOut() {
 	  return new Promise(function (resolve, reject) {
 	    $.ajax({
 	      url: env.url + 'sign-out/' + localStorage.getItem('id'),
@@ -11292,21 +11334,14 @@
 	      }
 	    }).done(function (result) {
 	      return resolve(result);
-	    }) // HACK: This should be resolve but backends is sending wrong Status Code foward.
+	    }) // HACK: This should be resolve but backends is sending wrong Status Code forward.
 	    .fail(function (reason) {
 	      return reject(reason);
 	    });
-	  }).then(function (data) {
-	    localStorage.clear();
-	    console.log('Success is good!');
-	  }).then(onSuccess).catch(function () {
-	    //localStorage.clear();
-	    console.log('failure is good!');
-	    // /onFailure;
 	  });
 	};
 
-	var changePass = function changePass(item, onSuccess, onFailure) {
+	var changePassword = function changePassword(item) {
 	  return new Promise(function (resolve, reject) {
 	    $.ajax({
 	      url: env.url + 'change-password/' + localStorage.getItem('id'),
@@ -11322,21 +11357,19 @@
 	    }).fail(function (reason) {
 	      return reject(reason);
 	    });
-	  }).then(function (data) {
-	    localStorage.setItem('token', data.userAttributes.token);
-	  }).then(onSuccess).catch(onFailure);
+	  });
 	};
 
 	module.exports = {
 	  signUp: signUp,
 	  signIn: signIn,
 	  signOut: signOut,
-	  changePass: changePass
+	  changePassword: changePassword
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 26 */
+/* 25 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -11349,48 +11382,105 @@
 	module.exports = env;
 
 /***/ },
+/* 26 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+
+	var rules = __webpack_require__(27);
+	var boat = __webpack_require__(32);
+
+	var bindNavBarButtons = function bindNavBarButtons() {
+	  $('#home [data-role="rules"]').on('click', function () {
+	    rules.createTable();
+	  });
+	  $('#boat [data-role="camera"]').on('click', function () {
+	    boat.renderCamera();
+	    console.log('camera button clicked');
+	  });
+	};
+
+	module.exports = {
+	  bindNavBarButtons: bindNavBarButtons
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ },
 /* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	var api = __webpack_require__(25);
-	// How the Navigation bar should look for signed in user
-	var signedInNav = function signedInNav() {
-	  var signOutTemplate = __webpack_require__(28);
-	  var whenLogedinNavTemplate = __webpack_require__(29);
-	  $('.userDropDown').empty();
-	  $('.userDropDown').append(whenLogedinNavTemplate());
-	  $('.signOut-button').on('click', function () {
-	    api.signOut();
-	    $('#page-wrapper').empty();
-	    $('.signOut').append(signOutTemplate());
-	  });
-	  changePass();
-	};
+	var api = __webpack_require__(28);
 
-	// How the body should look when a user
-	var signedInBody = function signedInBody() {
+	var rulesTemplate = __webpack_require__(29);
+	var rulesTableTemplate = __webpack_require__(30);
+	var newRuleTemplate = __webpack_require__(31);
+
+	// Rules table functions
+	var createTable = function createTable() {
 	  $('#page-wrapper').empty();
-	  var dashTemplate = __webpack_require__(23);
-	  $('#page-wrapper').append(dashTemplate());
+	  $('#page-wrapper').append(rulesTemplate());
+	  api.getAllRules().then(function (data) {
+	    $('.table').append(rulesTableTemplate(data));
+	    $('button[name="addRule"]').on('click', function () {
+	      $('#page-wrapper').empty();
+	      $('#page-wrapper').append(newRuleTemplate());
+	      $('button[name="createRule"]').on('click', createRule);
+	    });
+	    bindTableRowButtons();
+	  }).catch(console.err);
 	};
 
-	var changePass = function changePass() {
-	  $('.changePass-nav-button').on('click', function () {
-	    var changePassTemplate = __webpack_require__(30);
-	    $('#page-wrapper').empty();
-	    $('#page-wrapper').append(changePassTemplate());
-	    $('.changePass-button').on('click', function () {
-	      var item = new FormData(document.querySelector('form[role="changePass"]'));
-	      api.changePass(item, signedInBody);
-	    });
+	var bindTableRowButtons = function bindTableRowButtons() {
+	  $('tbody tr').each(function () {
+	    var taskId = this.dataset.taskId; // The DOM Way
+	    var editButton = $(this).children('td').children('span').children('.btn-info');
+	    var deleteButton = $(this).children('td').children('span').children('.btn-warning');
+	    bindEditButton(taskId, editButton);
+	    bindDeleteButton(taskId, deleteButton);
 	  });
+	};
+
+	var bindEditButton = function bindEditButton(taskId, editButton) {
+	  editButton.on('click', function () {
+	    api.getOneRule(taskId).then(function (data) {
+	      $('#page-wrapper').empty();
+	      $('#page-wrapper').append(newRuleTemplate(data));
+	      $('button[name="updateRule"]').on('click', function () {
+	        updateRule(taskId);
+	      });
+	    }).catch(console.error);
+	  });
+	};
+
+	var bindDeleteButton = function bindDeleteButton(taskId, deleteButton) {
+	  deleteButton.on('click', function () {
+	    api.deleteRule(taskId).then(function () {
+	      createTable();
+	    }).catch(console.error);
+	  });
+	};
+
+	var createRule = function createRule() {
+	  var item = new FormData(document.querySelector('form[role="newRule"]'));
+	  api.createRule(item).then(function () {
+	    createTable();
+	  }).catch(function (data) {
+	    console.log('Issue: (Rules) Validation on Creation of a Rule #1 ');
+	    console.error(data);
+	  });
+	};
+
+	var updateRule = function updateRule(taskId) {
+	  var item = new FormData(document.querySelector('form[role="updateRule"]'));
+	  api.updateRule(taskId, item).then(function () {
+	    createTable();
+	  }).catch(console.error);
 	};
 
 	module.exports = {
-	  signedInNav: signedInNav,
-	  signedInBody: signedInBody
+	  createTable: createTable
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
@@ -11398,84 +11488,14 @@
 /* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Handlebars = __webpack_require__(4);
-	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
-	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "  <div class=\"container jumbotron row\">\n      <div class=\"col-md-4 col-md-offset-4\">\n          <div class=\"login-panel panel panel-default\">\n              <div class=\"panel-heading\">\n                  <h3 class=\"panel-title\">Please Sign Out</h3>\n              </div>\n              <div class=\"panel-body\">\n                <a class=\"signOut-button btn btn-lg btn-danger btn-block\">Sign Out</a>\n              </div>\n          </div>\n      </div>\n  </div>\n";
-	},"useData":true});
-
-/***/ },
-/* 29 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var Handlebars = __webpack_require__(4);
-	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
-	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "<li>\n  <a><i class=\"fa fa-fw fa-user\"></i> Profile</a>\n</li>\n<li>\n  <a><i class=\"fa fa-fw fa-envelope\"></i> Inbox</a>\n</li>\n<li>\n  <a><i class=\"fa fa-fw fa-gear\"></i> Settings</a>\n</li>\n<li class=\"changePass-nav-button\">\n  <a><i class=\"fa fa-fw fa-power-off\"></i> Change Password</a>\n</li>\n<li class=\"divider\"></li>\n<li class=\"signOut-button\">\n  <a><i class=\"fa fa-fw fa-power-off\"></i> Log Out</a>\n</li>\n";
-	},"useData":true});
-
-/***/ },
-/* 30 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var Handlebars = __webpack_require__(4);
-	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
-	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "<div class=\"container jumbotron row\">\n  <div class=\"col-md-4 col-md-offset-4\">\n    <div class=\"login-panel panel panel-default\">\n      <div class=\"panel-heading\">\n        <h3 class=\"panel-title\">Change Password</h3>\n      </div>\n      <div class=\"panel-body\">\n        <form role=\"changePass\">\n          <fieldset>\n            <div class=\"form-group\">\n              <input name=\"passwords[old]\" type=\"password\" class=\"form-control\" placeholder=\"Old Password\" required>\n            </div>\n            <div class=\"form-group\">\n              <input name=\"passwords[new]\" type=\"password\" class=\"form-control\" placeholder=\"New Password\" value=\"passwordTest\" required>\n            </div>\n            <!-- Change this to a button or input when using this as a form -->\n            <a class=\"changePass-button btn btn-lg btn-info btn-block\">Change Password</a>\n          </fieldset>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>\n";
-	},"useData":true});
-
-/***/ },
-/* 31 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function($) {'use strict';
-
-	var apiRules = __webpack_require__(32);
-	var rulesTemplate = __webpack_require__(33);
-	var rulesTableTemplate = __webpack_require__(34);
-
-	var ruleTable = function ruleTable(data) {
-	  $('.table').append(rulesTableTemplate(data));
-	};
-
-	var start = function start() {
-	  $('li[data-role="rules"]').on('click', function () {
-	    console.log('rules clicked');
-	    new Promise(function (resolve, reject) {
-	      $('#page-wrapper').empty();
-	      $('#page-wrapper').append(rulesTemplate());
-	      return resolve();
-	      if (false) {
-	        reject();
-	      }
-	    }).then(function () {
-	      $('#page-wrapper').empty();
-	      $('#page-wrapper').append(rulesTemplate());
-	    }).then(function () {
-	      apiRules.index(ruleTable);
-	    })
-	    //history.pushState('stateObj', "rules", "rules");
-	    .catch(console.log);
-	  });
-	};
-
-	module.exports = {
-	  start: start
-	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ },
-/* 32 */
-/***/ function(module, exports, __webpack_require__) {
-
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 	// Require js files below
 	// dont for get to checkout localstorage!
 	//"http://httpbin.org/post",
 
-	var env = __webpack_require__(26);
+	var env = __webpack_require__(25);
 
-	var index = function index(onSuccess, onFailure) {
+	var getAllRules = function getAllRules() {
 	  return new Promise(function (resolve, reject) {
 	    $.ajax({
 	      url: env.url + "rules/",
@@ -11489,11 +11509,203 @@
 	    }).fail(function (reason) {
 	      return reject(reason);
 	    });
-	  }).then(onSuccess).catch(onFailure);
+	  });
+	};
+
+	var getOneRule = function getOneRule(id) {
+	  return new Promise(function (resolve, reject) {
+	    $.ajax({
+	      url: env.url + "rules/" + id,
+	      method: 'GET',
+	      headers: {
+	        Authorization: 'Token token=' + localStorage.getItem('token')
+	      },
+	      dataType: 'json'
+	    }).done(function (result) {
+	      return resolve(result);
+	    }).fail(function (reason) {
+	      return reject(reason);
+	    });
+	  });
+	};
+
+	var createRule = function createRule(item) {
+	  return new Promise(function (resolve, reject) {
+	    $.ajax({
+	      url: env.url + 'rules',
+	      type: 'POST',
+	      contentType: false, // Needed for FormData
+	      processData: false, // Needed for FormData This is because item
+	      headers: {
+	        Authorization: 'Token token=' + localStorage.getItem('token')
+	      },
+	      data: item // item is referancing the new object called 'item'.
+	    }).done(function (result) {
+	      return resolve(result);
+	    }).fail(function (reason) {
+	      return reject(reason);
+	    });
+	  });
+	};
+
+	var updateRule = function updateRule(id, item) {
+	  return new Promise(function (resolve, reject) {
+	    $.ajax({
+	      url: env.url + 'rules/' + id,
+	      type: 'PATCH',
+	      contentType: false, // Needed for FormData
+	      processData: false, // Needed for FormData This is because item
+	      headers: {
+	        Authorization: 'Token token=' + localStorage.getItem('token')
+	      },
+	      data: item // item is referancing the new object called 'item'.
+	    }).done(function (result) {
+	      return resolve(result);
+	    }).fail(function (reason) {
+	      return reject(reason);
+	    });
+	  });
+	};
+
+	var deleteRule = function deleteRule(id) {
+	  return new Promise(function (resolve, reject) {
+	    $.ajax({
+	      url: env.url + 'rules/' + id,
+	      type: 'DELETE',
+	      headers: {
+	        Authorization: 'Token token=' + localStorage.getItem('token')
+	      }
+	    }).done(function (result) {
+	      return resolve(result);
+	    }).fail(function (reason) {
+	      return reject(reason);
+	    });
+	  });
 	};
 
 	module.exports = {
-	  index: index
+	  getAllRules: getAllRules,
+	  getOneRule: getOneRule,
+	  createRule: createRule,
+	  updateRule: updateRule,
+	  deleteRule: deleteRule
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ },
+/* 29 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(4);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    return "<div class=\"container-fluid\">\n\n  <!-- Page Heading -->\n  <div class=\"row\">\n    <div class=\"col-lg-12\">\n      <h1 class=\"page-header\">\n        Rules\n      </h1>\n      <ol class=\"breadcrumb\">\n        <li>\n          <i class=\"fa fa-dashboard\"></i><a>Dashboard</a>\n        </li>\n        <li class=\"active\">\n          <i class=\"fa fa-edit\"></i> Rules\n        </li>\n      </ol>\n    </div>\n  </div>\n  <!-- /.row -->\n\n  <div class=\"col-lg-12\">\n    <h2>Rules Currently Set </h2>\n    <div class=\"table-responsive\">\n      <table class=\"table table-bordered table-hover table-striped\">\n        <!-- Rendered by /rules/table.handlebars -->\n      </table>\n    </div>\n  </div>\n</div>\n<!-- /.row -->\n";
+	},"useData":true});
+
+/***/ },
+/* 30 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(4);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data) {
+	    var alias1=container.lambda, alias2=container.escapeExpression;
+
+	  return "<tr data-task-id='"
+	    + alias2(alias1((depth0 != null ? depth0.id : depth0), depth0))
+	    + "'>\n  <td>\n    <span>\n      <input type=\"checkbox\">\n    </span>\n  </td>\n  <td>"
+	    + alias2(alias1((depth0 != null ? depth0.name : depth0), depth0))
+	    + "</td>\n  <td>"
+	    + alias2(alias1((depth0 != null ? depth0.temperature : depth0), depth0))
+	    + "</td>\n  <td>"
+	    + alias2(alias1((depth0 != null ? depth0.operator : depth0), depth0))
+	    + "</td>\n  <td>"
+	    + alias2(alias1((depth0 != null ? depth0.action : depth0), depth0))
+	    + "</td>\n  <td>\n    <span class=\"pull-right\">\n      <button class=\"btn btn-xs btn-info\">\n        <span class=\"glyphicons glyphicons-pencil\">EDIT</span>\n      </button>\n      <button class=\"btn btn-xs btn-warning\">\n        <span class=\"glyphicon glyphicon-trash\"></span>\n      </button>\n    </span>\n  </td>\n</tr>\n";
+	},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    var stack1;
+
+	  return "<thead>\n  <tr>\n    <th>Active</th>\n    <th>Name</th>\n    <th>Temperature</th>\n    <th>Operator</th>\n    <th>Action</th>\n    <th>Edit</th>\n  </tr>\n</thead>\n\n<tbody>\n"
+	    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.allRules : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+	    + "  <tfoot class=\"full-width\">\n    <tr>\n      <th colspan=\"5\">\n        <button class=\"btn btn-md btn-primary\" type=\"button\" name=\"approveCheckmarks\">\n          Approve\n        </button>\n      </th>\n      <th colspan=\"1\">\n        <button class=\"btn btn-md btn-primary\" type=\"button\" name=\"addRule\">\n          <span class=\"glyphicons glyphicons-user\"></span>ADD\n        </button>\n      </th>\n    </tr>\n  </tfoot>\n</tbody>\n";
+	},"useData":true});
+
+/***/ },
+/* 31 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(4);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data) {
+	    return "        <form role=\"updateRule\">\n";
+	},"3":function(container,depth0,helpers,partials,data) {
+	    return "        <form role=\"newRule\">\n";
+	},"5":function(container,depth0,helpers,partials,data) {
+	    var stack1, alias1=container.lambda, alias2=container.escapeExpression;
+
+	  return "              <option value=\""
+	    + alias2(alias1(((stack1 = (depth0 != null ? depth0.rule : depth0)) != null ? stack1.operator : stack1), depth0))
+	    + "\">Current Value: "
+	    + alias2(alias1(((stack1 = (depth0 != null ? depth0.rule : depth0)) != null ? stack1.operator : stack1), depth0))
+	    + "</option>\n";
+	},"7":function(container,depth0,helpers,partials,data) {
+	    return "";
+	},"9":function(container,depth0,helpers,partials,data) {
+	    var stack1, alias1=container.lambda, alias2=container.escapeExpression;
+
+	  return "              <option value=\""
+	    + alias2(alias1(((stack1 = (depth0 != null ? depth0.rule : depth0)) != null ? stack1.action : stack1), depth0))
+	    + "\">Current Value: "
+	    + alias2(alias1(((stack1 = (depth0 != null ? depth0.rule : depth0)) != null ? stack1.action : stack1), depth0))
+	    + "</option>\n";
+	},"11":function(container,depth0,helpers,partials,data) {
+	    var stack1, alias1=container.lambda, alias2=container.escapeExpression;
+
+	  return "              <option value=\""
+	    + alias2(alias1(((stack1 = (depth0 != null ? depth0.rule : depth0)) != null ? stack1.active : stack1), depth0))
+	    + "\">Current Value: "
+	    + alias2(alias1(((stack1 = (depth0 != null ? depth0.rule : depth0)) != null ? stack1.active : stack1), depth0))
+	    + "</option>\n";
+	},"13":function(container,depth0,helpers,partials,data) {
+	    return "          <button class=\"btn btn-primary btn-md\" name=\"updateRule\">\n            Update Rule\n          </button>\n";
+	},"15":function(container,depth0,helpers,partials,data) {
+	    return "          <button class=\"btn btn-primary btn-md\" name=\"createRule\">\n            Create Rule\n          </button>\n";
+	},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    var stack1, alias1=depth0 != null ? depth0 : {}, alias2=container.lambda, alias3=container.escapeExpression;
+
+	  return "<div class=\"container-fluid\">\n\n  <!-- Page Heading -->\n  <div class=\"row\">\n    <div class=\"col-lg-12\">\n      <h1 class=\"page-header\">Forms</h1>\n      <ol class=\"breadcrumb\">\n        <li>\n          <i class=\"fa fa-dashboard\"></i> <a href=\"index.html\">Dashboard</a>\n        </li>\n        <li class=\"active\">\n          <i class=\"fa fa-edit\"></i>Rules\n        </li>\n        <li class=\"active\">\n          <i class=\"fa fa-edit\"></i> Create rule\n        </li>\n      </ol>\n    </div>\n  </div>\n  <!-- /.row -->\n\n  <div class=\"row\">\n    <div class=\"col-lg-4\"></div>\n    <div class=\"col-lg-4\">\n"
+	    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.rule : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "")
+	    + "      <form role=\"newRule\">\n        <div class=\"form-group\">\n          <label>Rule Name</label>\n          <input name=\"rule[name]\" class=\"form-control\"  value=\""
+	    + alias3(alias2(((stack1 = (depth0 != null ? depth0.rule : depth0)) != null ? stack1.name : stack1), depth0))
+	    + "\">\n          <p class=\"help-block\">Example: Boiler Over Heating</p>\n        </div>\n        <div class=\"form-group\">\n          <label>Temperature</label>\n          <input name=\"rule[temperature]\" class=\"form-control\" value=\""
+	    + alias3(alias2(((stack1 = (depth0 != null ? depth0.rule : depth0)) != null ? stack1.temperature : stack1), depth0))
+	    + "\">\n        </div>\n        <div class=\"form-group\">\n          <label>Operator</label>\n          <select name=\"rule[operator]\" class=\"form-control\">\n"
+	    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.rule : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.program(7, data, 0),"data":data})) != null ? stack1 : "")
+	    + "            <option><</option>\n            <option>></option>\n            <option><=</option>\n            <option>>=</option>\n          </select>\n        </div>\n        <div class=\"form-group\">\n          <label>Actions</label>\n          <select name=\"rule[action]\" class=\"form-control\">\n"
+	    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.rule : depth0),{"name":"if","hash":{},"fn":container.program(9, data, 0),"inverse":container.program(7, data, 0),"data":data})) != null ? stack1 : "")
+	    + "            <option>pumpOn</option>\n            <option>PumpOff</option>\n          </select>\n        </div>\n        <div class=\"form-group\">\n          <label>Active</label>\n          <select name=\"rule[active]\" class=\"form-control\">\n"
+	    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.rule : depth0),{"name":"if","hash":{},"fn":container.program(11, data, 0),"inverse":container.program(7, data, 0),"data":data})) != null ? stack1 : "")
+	    + "            <option value=\"T\">Yes</option>\n            <option value=\"F\">No</option>\n          </select>\n        </div>\n      </form>\n      <div>\n"
+	    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.rule : depth0),{"name":"if","hash":{},"fn":container.program(13, data, 0),"inverse":container.program(15, data, 0),"data":data})) != null ? stack1 : "")
+	    + "      </div>\n      <div class=\"col-lg-4\"></div>\n    </div>\n  </div>\n</div>\n<!-- /.row -->\n\n</div>\n<!-- /.container-fluid -->\n\n</div>\n";
+	},"useData":true});
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+
+	var cameraTemplate = __webpack_require__(33);
+
+	var renderCamera = function renderCamera() {
+	  $('#page-wrapper').empty();
+	  $('#page-wrapper').append(cameraTemplate());
+	  console.log('Trying to render Camera');
+	};
+
+	module.exports = {
+	  renderCamera: renderCamera
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
@@ -11504,7 +11716,7 @@
 	var Handlebars = __webpack_require__(4);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "<div class=\"container-fluid\">\n\n  <!-- Page Heading -->\n  <div class=\"row\">\n    <div class=\"col-lg-12\">\n      <h1 class=\"page-header\">\n        Rules\n      </h1>\n      <ol class=\"breadcrumb\">\n        <li>\n          <i class=\"fa fa-dashboard\"></i><a>Dashboard</a>\n        </li>\n        <li class=\"active\">\n          <i class=\"fa fa-edit\"></i> Rules\n        </li>\n      </ol>\n    </div>\n  </div>\n  <!-- /.row -->\n\n  <div class=\"col-lg-12\">\n    <h2>Rules Currently Set </h2>\n    <div class=\"table-responsive\">\n      <table class=\"table table-bordered table-hover table-striped\">\n        <!-- Rendered by /rules/table.handlebars -->\n      </table>\n    </div>\n  </div>\n</div>\n<!-- /.row -->\n";
+	    return "\n<div class=\"container-fluid\">\n\n  <!-- Page Heading -->\n  <div class=\"row\">\n    <div class=\"col-lg-12\">\n      <h1 class=\"page-header\"> Camera</h1>\n      <ol class=\"breadcrumb\">\n        <li>\n          <a>Boat</a>\n        </li>\n        <li class=\"active\">\n          Camera\n        </li>\n      </ol>\n    </div>\n  </div>\n  <!-- /.row -->\n\n  <div class=\"row\">\n      <img class=\"col-lg-12\" src=\"http://poedockcam.axiscam.net:57044/mjpg/1/video.mjpg\" alt=\"Poedock\">\n  </div>\n</div>\n";
 	},"useData":true});
 
 /***/ },
@@ -11513,26 +11725,8 @@
 
 	var Handlebars = __webpack_require__(4);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
-	module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data) {
-	    var alias1=container.lambda, alias2=container.escapeExpression;
-
-	  return "<tr data-task-id='"
-	    + alias2(alias1((depth0 != null ? depth0.id : depth0), depth0))
-	    + "'>\n  <td>"
-	    + alias2(alias1((depth0 != null ? depth0.name : depth0), depth0))
-	    + "</td>\n  <td>"
-	    + alias2(alias1((depth0 != null ? depth0.temperature : depth0), depth0))
-	    + "</td>\n  <td>"
-	    + alias2(alias1((depth0 != null ? depth0.operator : depth0), depth0))
-	    + "</td>\n  <td>"
-	    + alias2(alias1((depth0 != null ? depth0.action : depth0), depth0))
-	    + "</td>\n  <td>\n    <span>\n      <input type=\"checkbox\">\n    </span>\n  </td>\n  <td>\n    <span class=\"pull-right\">\n      <button class=\"btn btn-xs btn-info\">\n        <span class=\"glyphicons glyphicons-pencil\">EDIT</span>\n      </button>\n      <button class=\"btn btn-xs btn-warning\">\n        <span class=\"glyphicon glyphicon-trash\"></span>\n      </button>\n    </span>\n  </td>\n</tr>\n";
-	},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    var stack1;
-
-	  return "<thead>\n  <tr>\n    <th>Name</th>\n    <th>Temperature</th>\n    <th>Operator</th>\n    <th>Action</th>\n    <th>Active</th>\n    <th>Edit</th>\n  </tr>\n</thead>\n<tbody>\n\n"
-	    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.allRules : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-	    + "  <tr>\n    <td>\n      <div class=\"form-group\">\n        <input class=\"form-control\" placeholder=\"Name\">\n      </div>\n    </td>\n    <td>\n      <div class=\"form-group\">\n        <input class=\"form-control\" placeholder=\"Alert\">\n      </div>\n    </td>\n    <td>\n      <div class=\"form-group\">\n        <select class=\"form-control\">\n          <option> > </option>\n          <option> < </option>\n          <option> <= </option>\n          <option> >= </option>\n        </select>\n      </div>\n    </td>\n    <td>\n      <div class=\"form-group\">\n        <select class=\"form-control\">\n          <option> Pump On </option>\n          <option> Pump Off </option>\n        </select>\n      </div>\n    </td>\n    <td>\n      <input type=\"checkbox\">\n    </td>\n    <td>\n      <button class=\"btn btn-md btn-info\">\n        <span>Submit</span>\n      </button>\n    </td>\n  </tr>\n</tbody>\n";
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    return "  <div class=\"container jumbotron row\">\n      <div class=\"col-md-4 col-md-offset-4\">\n          <div class=\"login-panel panel panel-default\">\n              <div class=\"panel-heading\">\n                  <h3 class=\"panel-title\">Please Sign UP</h3>\n              </div>\n              <div class=\"panel-body\">\n                  <form role=\"signUp\">\n                      <fieldset>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[email]\" type=\"email\" class=\"form-control\" placeholder=\"Email address\" required autofocus>\n                          </div>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[password]\" type=\"password\" class=\"form-control\" placeholder=\"Password\" required>\n                          </div>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[password_confirmation]\" type=\"password\" class=\"form-control\" placeholder=\"Confirm Password\" required>\n                          </div>\n                          <a class=\"signUp-button btn btn-lg btn-warning btn-block\">Sign up</a>\n                      </fieldset>\n                  </form>\n              </div>\n          </div>\n      </div>\n  </div>\n";
 	},"useData":true});
 
 /***/ },
@@ -11542,7 +11736,7 @@
 	var Handlebars = __webpack_require__(4);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "  <div class=\"container jumbotron row\">\n      <div class=\"col-md-4 col-md-offset-4\">\n          <div class=\"login-panel panel panel-default\">\n              <div class=\"panel-heading\">\n                  <h3 class=\"panel-title\">Please Sign UP</h3>\n              </div>\n              <div class=\"panel-body\">\n                  <form role=\"signUp\">\n                      <fieldset>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[email]\" type=\"email\" class=\"form-control\" placeholder=\"Email address\" value=\"signup@email.com\" required autofocus>\n                          </div>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[password]\" type=\"password\" class=\"form-control\" placeholder=\"Password\" value=\"signup password\" required>\n                          </div>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[password_confirmation]\" type=\"password\" class=\"form-control\" placeholder=\"Confirm Password\" value=\"signup password\" required>\n                          </div>\n                          <div class=\"checkbox\">\n                              <label>\n                                  <input name=\"remember\" type=\"checkbox\" value=\"true\">Remember Me\n                              </label>\n                          </div>\n                          <!-- Change this to a button or input when using this as a form -->\n                          <a class=\"signUp-button btn btn-lg btn-warning btn-block\">Sign up</a>\n                      </fieldset>\n                  </form>\n              </div>\n          </div>\n      </div>\n  </div>\n";
+	    return "  <div class=\"container jumbotron row\">\n      <div class=\"col-md-4 col-md-offset-4\">\n          <div class=\"login-panel panel panel-default\">\n              <div class=\"panel-heading\">\n                  <h3 class=\"panel-title\">Please Sign In</h3>\n              </div>\n              <div class=\"panel-body\">\n                  <form role=\"signIn\">\n                      <fieldset>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[email]\" type=\"email\" class=\"form-control\" placeholder=\"Email address\" required autofocus>\n                          </div>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[password]\" type=\"password\" class=\"form-control\" placeholder=\"Password\" required>\n                          </div>\n                          <!-- <div class=\"checkbox\">\n                              <label>\n                                  <input name=\"remember\" type=\"checkbox\" value=\"true\">Remember Me\n                              </label>\n                          </div> -->\n                          <a class=\"signIn-button btn btn-lg btn-success btn-block\">Sign-In</a>\n                      </fieldset>\n                  </form>\n              </div>\n          </div>\n      </div>\n  </div>\n";
 	},"useData":true});
 
 /***/ },
@@ -11552,13 +11746,40 @@
 	var Handlebars = __webpack_require__(4);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "  <div class=\"container jumbotron row\">\n      <div class=\"col-md-4 col-md-offset-4\">\n          <div class=\"login-panel panel panel-default\">\n              <div class=\"panel-heading\">\n                  <h3 class=\"panel-title\">Please Sign In</h3>\n              </div>\n              <div class=\"panel-body\">\n                  <form role=\"signIn\">\n                      <fieldset>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[email]\" type=\"email\" class=\"form-control\" placeholder=\"Email address\" required autofocus>\n                          </div>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[password]\" type=\"password\" class=\"form-control\" placeholder=\"Password\" required>\n                          </div>\n                          <div class=\"checkbox\">\n                              <label>\n                                  <input name=\"remember\" type=\"checkbox\" value=\"true\">Remember Me\n                              </label>\n                          </div>\n                          <!-- Change this to a button or input when using this as a form -->\n                          <a class=\"signIn-button btn btn-lg btn-success btn-block\">signIn</a>\n                      </fieldset>\n                  </form>\n              </div>\n          </div>\n      </div>\n  </div>\n";
+	    return "<div class=\"container jumbotron row\">\n  <div class=\"col-md-4 col-md-offset-4\">\n    <div class=\"login-panel panel panel-default\">\n      <div class=\"panel-heading\">\n        <h3 class=\"panel-title\">Change Password</h3>\n      </div>\n      <div class=\"panel-body\">\n        <form role=\"changePass\">\n          <fieldset>\n            <div class=\"form-group\">\n              <input name=\"passwords[old]\" type=\"password\" class=\"form-control\" placeholder=\"Old Password\" required>\n            </div>\n            <div class=\"form-group\">\n              <input name=\"passwords[new]\" type=\"password\" class=\"form-control\" placeholder=\"New Password\" required>\n            </div>\n            <a class=\"changePass-button btn btn-lg btn-info btn-block\">Change Password</a>\n          </fieldset>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>\n";
 	},"useData":true});
 
 /***/ },
-/* 37 */,
-/* 38 */,
-/* 39 */,
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(4);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    return "<li>\n  <a><i class=\"fa fa-fw fa-user\"></i> Profile</a>\n</li>\n<li>\n  <a><i class=\"fa fa-fw fa-envelope\"></i> Inbox</a>\n</li>\n<li>\n  <a><i class=\"fa fa-fw fa-gear\"></i> Settings</a>\n</li>\n<li class=\"changePass-nav-button\">\n  <a><i class=\"fa fa-fw fa-power-off\"></i> Change Password</a>\n</li>\n<li class=\"divider\"></li>\n<li class=\"signOut-button\">\n  <a><i class=\"fa fa-fw fa-power-off\"></i> Log Out</a>\n</li>\n";
+	},"useData":true});
+
+/***/ },
+/* 38 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(4);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    return "<li data-role=\"login\">\n  <a><i class=\"fa fa-fw fa-power-off\"></i> Log In</a>\n</li>\n<li data-role=\"signup\">\n  <a><i class=\"fa fa-fw fa-power-off\"></i> Sign Up</a>\n</li>\n";
+	},"useData":true});
+
+/***/ },
+/* 39 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(4);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    return "<li>\n  <a href=\"javascript:;\" data-toggle=\"collapse\" data-target=\"#home\"><i class=\"fa fa-lg fa-fw fa-home\"></i> Home <i class=\"fa fa-fw fa-caret-down\"></i></a>\n  <ul id=\"home\" class=\"collapse\">\n    <li>\n      <a data-role=\"dashboard\" ><i class=\"fa fa-fw fa-dashboard\"></i> Dashboard</a>\n      <a data-role=\"rules\" ><i class=\"fa fa-fw fa-edit\"></i> Rules</a>\n    </li>\n  </ul>\n</li>\n\n<li>\n  <a href=\"javascript:;\" data-toggle=\"collapse\" data-target=\"#boat\"><i class=\"fa fa-lg fa-fw fa-ship\"></i> Boat <i class=\"fa fa-fw fa-caret-down\"></i></a>\n  <ul id=\"boat\" class=\"collapse\">\n    <li>\n      <a data-role=\"camera\"><i class=\"fa fa-video-camera\"></i> Camera</a>\n    </li>\n  </ul>\n</li>\n";
+	},"useData":true});
+
+/***/ },
 /* 40 */,
 /* 41 */,
 /* 42 */,
@@ -11573,7 +11794,10 @@
 /* 51 */,
 /* 52 */,
 /* 53 */,
-/* 54 */
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(jQuery) {/*!
