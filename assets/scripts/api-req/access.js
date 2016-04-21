@@ -1,17 +1,15 @@
 'use strict';
-// Require js files below
-// dont for get to checkout localstorage!
 //"http://httpbin.org/post",
 const env = require('../env.js');
 
 let setStorage = function (data) {
-  let userInfo = data.userAttributes;
+  let userInfo = data.user;
   localStorage.setItem('email', userInfo.email);
   localStorage.setItem('id', userInfo.id);
   localStorage.setItem('token', userInfo.token);
 };
 
-let signUp = function(item, onSuccess, onFailure) {
+let signUp = function(item) {
   return new Promise(function(resolve, reject) {
     $.ajax({
       url: env.url + 'sign-up',
@@ -24,11 +22,9 @@ let signUp = function(item, onSuccess, onFailure) {
     .fail((reason) => reject(reason));
   })
   .then((data) => setStorage(data))
-  .then(onSuccess)
-  .catch(onFailure);
 };
 
-let signIn = function(item, onSuccess, onFailure) {
+let signIn = function(item) {
   return new Promise(function (resolve, reject) {
     $.ajax({
       url: env.url + 'sign-in',
@@ -41,11 +37,9 @@ let signIn = function(item, onSuccess, onFailure) {
     .fail((reason) => reject(reason));
   })
   .then((data) => setStorage(data))
-  .then(onSuccess)
-  .catch(onFailure);
 };
 
-let signOut = function(onSuccess, onFailure) {
+let signOut = function() {
   return new Promise(function(resolve, reject) {
     $.ajax({
       url: env.url + 'sign-out/' + localStorage.getItem('id'),
@@ -54,22 +48,12 @@ let signOut = function(onSuccess, onFailure) {
           Authorization: 'Token token=' + localStorage.getItem('token'),
         }
     })
-    .done((result) => resolve(result))   // HACK: This should be resolve but backends is sending wrong Status Code foward.
+    .done((result) => resolve(result))   // HACK: This should be resolve but backends is sending wrong Status Code forward.
     .fail((reason) => reject(reason));
   })
-  .then(function (data) {
-     localStorage.clear();
-     console.log('Success is good!');
-  })
-  .then(onSuccess)
-  .catch(function () {
-    //localStorage.clear();
-    console.log('failure is good!');
-    // /onFailure;
-  });
 };
 
-let changePass = function(item, onSuccess, onFailure) {
+let changePassword = function(item) {
   return new Promise(function(resolve, reject) {
     $.ajax({
       url: env.url + 'change-password/' + localStorage.getItem('id'),
@@ -84,16 +68,11 @@ let changePass = function(item, onSuccess, onFailure) {
     .done((result) => resolve(result))
     .fail((reason) => reject(reason));
   })
-  .then(function (data) {
-    localStorage.setItem('token', data.userAttributes.token);
-  })
-  .then(onSuccess)
-  .catch(onFailure);
 };
 
 module.exports = {
   signUp,
   signIn,
   signOut,
-  changePass,
+  changePassword,
 };
