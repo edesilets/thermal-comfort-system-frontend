@@ -9,7 +9,6 @@ let bindNavBarButtons = function() {
   });
   $('#boat [data-role="camera"]').on('click', function() {
     boat.renderCamera();
-    console.log('camera button clicked');
   });
 };
 
