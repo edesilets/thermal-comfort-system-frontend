@@ -3,6 +3,8 @@
 let api = require('../api-req/access');
 let ui = require('../ui/sideNavBar');
 
+let mqttDash = require('./dashboard/feeds.js');
+
 // Signin actions
 let signUpTemplate = require('../handlebars/sign/signUp.handlebars');
 let signInTemplate = require('../handlebars/sign/signIn.handlebars');
@@ -20,6 +22,7 @@ let signedInBody = function () {
   $('#page-wrapper').append(dashTemplate());
   $('.side-nav').empty();
   $('.side-nav').append(sideNavTemplate());
+  mqttDash.displayFeedsOnDashboard();
 };
 
 let signedInView = function () {
@@ -91,6 +94,7 @@ let signedInNav = function () {
 let signClickHandlers = function () {
   $('.userDropDown').append(whenLogedOutNavTemplate());
   $('#page-wrapper').append(dashTemplate());
+  mqttDash.displayFeedsOnDashboard();
   bindSignIn();
   bindSignUp();
 };
