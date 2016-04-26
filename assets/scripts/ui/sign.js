@@ -82,7 +82,10 @@ let signedInNav = function () {
        bindSignIn();
        bindSignUp();
     })
-    .catch((data) => console.error(data));
+    .catch((data) => {
+      console.error(data);
+      localStorage.clear();
+    });
   });
   bindChangePassword();
 };
