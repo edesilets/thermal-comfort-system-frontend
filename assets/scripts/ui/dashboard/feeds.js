@@ -1,6 +1,11 @@
 'use strict';
+
+let dashTemplate = require('../../handlebars/dashboard.handlebars');
+let sideNavTemplate = require('../../handlebars/sideNav.handlebars');
+let env = require('../../env');
+
 let mqtt = require('mqtt');
-let client = mqtt.connect('ws://node:9001', {
+let client = mqtt.connect( env.ws , {
   protocolId: 'MQIsdp',
   protocolVersion: 3
 });
@@ -64,6 +69,12 @@ let bindThermostatUpdate = function (location, messageTemperature) {
   $(location).find('.huge').empty().append(messageTemperature + '&deg;F');
 };
 
+let renderDashboard = function () {
+  $('#page-wrapper').empty();
+  $('#page-wrapper').append(dashTemplate());
+  displayFeedsOnDashboard();
+};
+
 module.exports = {
-  displayFeedsOnDashboard
+  renderDashboard
 };
