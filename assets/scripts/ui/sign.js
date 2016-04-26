@@ -3,14 +3,13 @@
 let api = require('../api-req/access');
 let ui = require('../ui/sideNavBar');
 
-let mqttDash = require('./dashboard/feeds.js');
+let dashboard = require('./dashboard/feeds.js');
 
 // Signin actions
 let signUpTemplate = require('../handlebars/sign/signUp.handlebars');
 let signInTemplate = require('../handlebars/sign/signIn.handlebars');
 
 // Dash Templates
-let dashTemplate = require('../handlebars/dashboard.handlebars');
 let changePassTemplate = require('../handlebars/sign/changePass.handlebars');
 let whenLogedinNavTemplate = require('../handlebars/sign/signinNavIn.handlebars');
 let whenLogedOutNavTemplate = require('../handlebars/sign/signinNavOut.handlebars');
@@ -18,11 +17,9 @@ let sideNavTemplate = require('../handlebars/sideNav.handlebars');
 
 // How the body should look when a user
 let signedInBody = function () {
-  $('#page-wrapper').empty();
-  $('#page-wrapper').append(dashTemplate());
   $('.side-nav').empty();
   $('.side-nav').append(sideNavTemplate());
-  mqttDash.displayFeedsOnDashboard();
+  dashboard.renderDashboard();
 };
 
 let signedInView = function () {
@@ -81,8 +78,7 @@ let signedInNav = function () {
        $('.side-nav').empty();
        $('.userDropDown').empty();
        $('.userDropDown').append(whenLogedOutNavTemplate());
-       $('#page-wrapper').empty();
-       $('#page-wrapper').append(dashTemplate());
+       dashboard.renderDashboard();
        bindSignIn();
        bindSignUp();
     })
@@ -93,10 +89,9 @@ let signedInNav = function () {
 
 let signClickHandlers = function () {
   $('.userDropDown').append(whenLogedOutNavTemplate());
-  $('#page-wrapper').append(dashTemplate());
-  mqttDash.displayFeedsOnDashboard();
   bindSignIn();
   bindSignUp();
+  dashboard.renderDashboard();
 };
 
 module.exports = {
