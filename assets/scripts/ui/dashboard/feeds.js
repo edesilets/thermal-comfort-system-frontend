@@ -2,9 +2,10 @@
 
 let dashTemplate = require('../../handlebars/dashboard.handlebars');
 let sideNavTemplate = require('../../handlebars/sideNav.handlebars');
+let env = require('../../env');
 
 let mqtt = require('mqtt');
-let client = mqtt.connect('ws://node:9001', {
+let client = mqtt.connect( env.ws , {
   protocolId: 'MQIsdp',
   protocolVersion: 3
 });
