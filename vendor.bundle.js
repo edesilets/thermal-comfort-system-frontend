@@ -99,7 +99,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(2);
-	module.exports = __webpack_require__(138);
+	module.exports = __webpack_require__(140);
 
 
 /***/ },
@@ -9984,13 +9984,13 @@
 	var dashboard = __webpack_require__(33);
 
 	// Signin actions
-	var signUpTemplate = __webpack_require__(116);
-	var signInTemplate = __webpack_require__(117);
+	var signUpTemplate = __webpack_require__(118);
+	var signInTemplate = __webpack_require__(119);
 
 	// Dash Templates
-	var changePassTemplate = __webpack_require__(118);
-	var whenLogedinNavTemplate = __webpack_require__(119);
-	var whenLogedOutNavTemplate = __webpack_require__(120);
+	var changePassTemplate = __webpack_require__(120);
+	var whenLogedinNavTemplate = __webpack_require__(121);
+	var whenLogedOutNavTemplate = __webpack_require__(122);
 	var sideNavTemplate = __webpack_require__(35);
 
 	// How the body should look when a user
@@ -10063,7 +10063,8 @@
 	      bindSignIn();
 	      bindSignUp();
 	    }).catch(function (data) {
-	      return console.error(data);
+	      console.error(data);
+	      localStorage.clear();
 	    });
 	  });
 	  bindChangePassword();
@@ -10201,6 +10202,7 @@
 	var rules = __webpack_require__(7);
 	var boat = __webpack_require__(31);
 	var dashboard = __webpack_require__(33);
+	var demo = __webpack_require__(116);
 
 	var bindNavBarButtons = function bindNavBarButtons() {
 	  $('#home [data-role="dashboard"]').on('click', function () {
@@ -10208,6 +10210,9 @@
 	  });
 	  $('#home [data-role="rules"]').on('click', function () {
 	    rules.createTable();
+	  });
+	  $('#home [data-role="demo"]').on('click', function () {
+	    demo.renderDashboard();
 	  });
 	  $('#boat [data-role="camera"]').on('click', function () {
 	    boat.renderCamera();
@@ -11735,15 +11740,18 @@
 	    } else if (topic === '/home/coalshed/boiler/temperature/outletpipe') {
 	      var _temp = parseFloat(message.toString().replace(' ', '')).toFixed(2);
 	      bindBoilerUpdate($('.coalshedboiler .outletpipe'), _temp);
-	    } else if (topic === '/home/basement/boiler/temperature/inletpipe') {
+	    } else if (topic === '/home/coalshed/boiler/temperature/waterjacket') {
 	      var _temp2 = parseFloat(message.toString().replace(' ', '')).toFixed(2);
-	      bindBoilerUpdate($('.basementboiler .inletpipe'), _temp2);
-	    } else if (topic === '/home/basement/boiler/temperature/outletpipe') {
+	      bindBoilerUpdate($('.coalshedboiler .waterjacket'), _temp2);
+	    } else if (topic === '/home/basement/boiler/temperature/inletpipe') {
 	      var _temp3 = parseFloat(message.toString().replace(' ', '')).toFixed(2);
-	      bindBoilerUpdate($('.basementboiler .outletpipe'), _temp3);
-	    } else if (topic === '/home/livingroom/thermostat/temperature/livingroom') {
+	      bindBoilerUpdate($('.basementboiler .inletpipe'), _temp3);
+	    } else if (topic === '/home/basement/boiler/temperature/outletpipe') {
 	      var _temp4 = parseFloat(message.toString().replace(' ', '')).toFixed(2);
-	      bindThermostatUpdate($('.livingroom .upstairs'), _temp4);
+	      bindBoilerUpdate($('.basementboiler .outletpipe'), _temp4);
+	    } else if (topic === '/home/livingroom/thermostat/temperature/livingroom') {
+	      var _temp5 = parseFloat(message.toString().replace(' ', '')).toFixed(2);
+	      bindThermostatUpdate($('.livingroom .upstairs'), _temp5);
 	    }
 	  });
 	};
@@ -11764,15 +11772,15 @@
 	};
 
 	var bindThermostatUpdate = function bindThermostatUpdate(location, messageTemperature) {
-	  if (messageTemperature < 50) {
+	  if (messageTemperature <= 50) {
 	    $(location).removeClass('panel-primary').addClass('panel-info');
 	  } else if (messageTemperature > 50 && messageTemperature < 60) {
 	    $(location).removeClass('panel-info panel-green').addClass('panel-primary');
-	  } else if (messageTemperature > 60 && messageTemperature < 77) {
+	  } else if (messageTemperature >= 60 && messageTemperature < 77) {
 	    $(location).removeClass('panel-primary panel-yellow').addClass('panel-green');
-	  } else if (messageTemperature < 77 && messageTemperature > 85) {
+	  } else if (messageTemperature >= 77 && messageTemperature < 85) {
 	    $(location).removeClass('panel-green panel-red').addClass('panel-yellow');
-	  } else if (messageTemperature > 85) {
+	  } else if (messageTemperature >= 85) {
 	    $(location).removeClass('panel-yellow').addClass('panel-red');
 	  }
 	  $(location).find('.huge').empty().append(messageTemperature + '&deg;F');
@@ -11796,7 +11804,7 @@
 	var Handlebars = __webpack_require__(10);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "<div class=\"container-fluid\">\n\n  <!-- Page Heading -->\n  <div class=\"row\">\n    <div class=\"col-lg-12\">\n      <h1 class=\"page-header\">\n        Dashboard <small>Overview</small>\n      </h1>\n      <ol class=\"breadcrumb\">\n        <li class=\"active\">\n          <i class=\"fa fa-dashboard\"></i> Dashboard\n        </li>\n      </ol>\n    </div>\n  </div>\n  <!-- /.row -->\n\n  <div class=\"row\">\n    <div class=\"col-lg-6\">\n      <div class=\"panel panel-default basementboiler\">\n        <div class=\"panel-heading\">\n          <h3 class=\"panel-title\"></i> Basement Boiler</h3>\n        </div>\n        <div class=\"panel-body\">\n          <div class=\"row\">\n            <div class=\"col-lg-6 col-md-6\">\n              <div class=\"panel panel-primary inletpipe\">\n                <div class=\"panel-heading\">\n                  <div class=\"row\">\n                    <div class=\"col-xs-3\">\n                      <i class=\"wi wi-thermometer\"></i>\n                    </div>\n                    <div class=\"col-xs-9 text-right\">\n                      <div class=\"huge\">NA</div>\n                      <div>Inlet Pipe</div>\n                    </div>\n                  </div>\n                </div>\n                <a href=\"#\">\n                  <div class=\"panel-footer\">\n                    <span class=\"pull-left\">View Details</span>\n                    <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                    <div class=\"clearfix\"></div>\n                  </div>\n                </a>\n              </div>\n            </div>\n            <div class=\"col-lg-6 col-md-6\">\n              <div class=\"panel panel-primary outletpipe\">\n                <div class=\"panel-heading\">\n                  <div class=\"row\">\n                    <div class=\"col-xs-3\">\n                      <!-- <i class=\"fa fa-tasks fa-5x\"></i> -->\n                    </div>\n                    <div class=\"col-xs-9 text-right\">\n                      <div class=\"huge\">NA</div>\n                      <div>Outlet Pipe</div>\n                    </div>\n                  </div>\n                </div>\n                <a href=\"#\">\n                  <div class=\"panel-footer\">\n                    <span class=\"pull-left\">View Details</span>\n                    <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                    <div class=\"clearfix\"></div>\n                  </div>\n                </a>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-lg-6\">\n      <div class=\"panel panel-default coalshedboiler\">\n        <div class=\"panel-heading\">\n          <h3 class=\"panel-title\"></i> Coal Shed</h3>\n        </div>\n        <div class=\"panel-body\">\n          <div class=\"row\">\n            <div class=\"col-lg-6 col-md-6\">\n              <div class=\"panel panel-primary inletpipe\">\n                <div class=\"panel-heading\">\n                  <div class=\"row\">\n                    <div class=\"col-xs-3\">\n                      <!-- <i class=\"fa fa-shopping-cart fa-5x\"></i> -->\n                    </div>\n                    <div class=\"col-xs-9 text-right\">\n                      <div class=\"huge\">NA</div>\n                      <div>Inlet Pipe</div>\n                    </div>\n                  </div>\n                </div>\n                <a href=\"#\">\n                  <div class=\"panel-footer\">\n                    <span class=\"pull-left\">View Details</span>\n                    <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                    <div class=\"clearfix\"></div>\n                  </div>\n                </a>\n              </div>\n            </div>\n            <div class=\"col-lg-6 col-md-6\">\n              <div class=\"panel panel-primary outletpipe\">\n                <div class=\"panel-heading\">\n                  <div class=\"row\">\n                    <div class=\"col-xs-3\">\n                      <!-- <i class=\"fa fa-support fa-5x\"></i> -->\n                    </div>\n                    <div class=\"col-xs-9 text-right\">\n                      <div class=\"huge\">NA</div>\n                      <div>Outlet pipe</div>\n                    </div>\n                  </div>\n                </div>\n                <a href=\"#\">\n                  <div class=\"panel-footer\">\n                    <span class=\"pull-left\">View Details</span>\n                    <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                    <div class=\"clearfix\"></div>\n                  </div>\n                </a>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-lg-6\">\n      <div class=\"panel panel-default livingroom\">\n        <div class=\"panel-heading\">\n          <h3 class=\"panel-title\"></i> Living Room</h3>\n        </div>\n        <div class=\"panel-body\">\n          <div class=\"row\">\n            <div class=\"col-lg-6 col-md-6\">\n              <div class=\"panel panel-primary upstairs\">\n                <div class=\"panel-heading\">\n                  <div class=\"row\">\n                    <div class=\"col-xs-3\">\n                      <!-- <i class=\"fa fa-shopping-cart fa-5x\"></i> -->\n                    </div>\n                    <div class=\"col-xs-9 text-right\">\n                      <div class=\"huge\">NA</div>\n                      <div>Up-stairs</div>\n                    </div>\n                  </div>\n                </div>\n                <a href=\"\">\n                  <div class=\"panel-footer\">\n                    <span class=\"pull-left\">View Details</span>\n                    <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                    <div class=\"clearfix\"></div>\n                  </div>\n                </a>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <!-- /.container-fluid -->\n</div>\n<!-- /#page-wrapper -->\n";
+	    return "<div class=\"container-fluid\">\n\n  <!-- Page Heading -->\n  <div class=\"row\">\n    <div class=\"col-lg-12\">\n      <h1 class=\"page-header\">\n        Dashboard <small>Overview</small>\n      </h1>\n      <ol class=\"breadcrumb\">\n        <li class=\"active\">\n          <i class=\"fa fa-dashboard\"></i> Dashboard\n        </li>\n      </ol>\n    </div>\n  </div>\n  <!-- /.row -->\n\n  <div class=\"row\">\n    <div class=\"col-lg-6\">\n      <div class=\"panel panel-default livingroom\">\n        <div class=\"panel-heading\">\n          <h3 class=\"panel-title\"></i> Living Room</h3>\n        </div>\n        <div class=\"panel-body\">\n          <div class=\"row\">\n            <div class=\"col-lg-6 col-md-6\">\n              <div class=\"panel panel-primary upstairs\">\n                <div class=\"panel-heading\">\n                  <div class=\"row\">\n                    <div class=\"col-xs-3\">\n                      <!-- <i class=\"fa fa-shopping-cart fa-5x\"></i> -->\n                    </div>\n                    <div class=\"col-xs-9 text-right\">\n                      <div class=\"huge\">NA</div>\n                      <div>Up-stairs</div>\n                    </div>\n                  </div>\n                </div>\n                <a href=\"\">\n                  <div class=\"panel-footer\">\n                    <span class=\"pull-left\">View Details</span>\n                    <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                    <div class=\"clearfix\"></div>\n                  </div>\n                </a>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-lg-6\">\n      <div class=\"panel panel-default basementboiler\">\n        <div class=\"panel-heading\">\n          <h3 class=\"panel-title\"></i> Basement Boiler</h3>\n        </div>\n        <div class=\"panel-body\">\n          <div class=\"row\">\n            <div class=\"col-lg-6 col-md-6\">\n              <div class=\"panel panel-primary inletpipe\">\n                <div class=\"panel-heading\">\n                  <div class=\"row\">\n                    <div class=\"col-xs-3\">\n                      <i class=\"wi wi-thermometer\"></i>\n                    </div>\n                    <div class=\"col-xs-9 text-right\">\n                      <div class=\"huge\">NA</div>\n                      <div>Inlet Pipe</div>\n                    </div>\n                  </div>\n                </div>\n                <a href=\"#\">\n                  <div class=\"panel-footer\">\n                    <span class=\"pull-left\">View Details</span>\n                    <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                    <div class=\"clearfix\"></div>\n                  </div>\n                </a>\n              </div>\n            </div>\n            <div class=\"col-lg-6 col-md-6\">\n              <div class=\"panel panel-primary outletpipe\">\n                <div class=\"panel-heading\">\n                  <div class=\"row\">\n                    <div class=\"col-xs-3\">\n                      <!-- <i class=\"fa fa-tasks fa-5x\"></i> -->\n                    </div>\n                    <div class=\"col-xs-9 text-right\">\n                      <div class=\"huge\">NA</div>\n                      <div>Outlet Pipe</div>\n                    </div>\n                  </div>\n                </div>\n                <a href=\"#\">\n                  <div class=\"panel-footer\">\n                    <span class=\"pull-left\">View Details</span>\n                    <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                    <div class=\"clearfix\"></div>\n                  </div>\n                </a>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-lg-6\">\n      <div class=\"panel panel-default coalshedboiler\">\n        <div class=\"panel-heading\">\n          <h3 class=\"panel-title\"></i> Coal Shed</h3>\n        </div>\n        <div class=\"panel-body\">\n          <div class=\"row\">\n            <div class=\"col-lg-6 col-md-6\">\n              <div class=\"panel panel-primary inletpipe\">\n                <div class=\"panel-heading\">\n                  <div class=\"row\">\n                    <div class=\"col-xs-3\">\n                      <!-- <i class=\"fa fa-shopping-cart fa-5x\"></i> -->\n                    </div>\n                    <div class=\"col-xs-9 text-right\">\n                      <div class=\"huge\">NA</div>\n                      <div>Inlet Pipe</div>\n                    </div>\n                  </div>\n                </div>\n                <a href=\"#\">\n                  <div class=\"panel-footer\">\n                    <span class=\"pull-left\">View Details</span>\n                    <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                    <div class=\"clearfix\"></div>\n                  </div>\n                </a>\n              </div>\n            </div>\n            <div class=\"col-lg-6 col-md-6\">\n              <div class=\"panel panel-primary waterjacket\">\n                <div class=\"panel-heading\">\n                  <div class=\"row\">\n                    <div class=\"col-xs-3\">\n                      <!-- <i class=\"fa fa-support fa-5x\"></i> -->\n                    </div>\n                    <div class=\"col-xs-9 text-right\">\n                      <div class=\"huge\">NA</div>\n                      <div>Water Jacket</div>\n                    </div>\n                  </div>\n                </div>\n                <a href=\"#\">\n                  <div class=\"panel-footer\">\n                    <span class=\"pull-left\">View Details</span>\n                    <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                    <div class=\"clearfix\"></div>\n                  </div>\n                </a>\n              </div>\n            </div>\n            <div class=\"col-lg-6 col-md-6\">\n              <div class=\"panel panel-primary outletpipe\">\n                <div class=\"panel-heading\">\n                  <div class=\"row\">\n                    <div class=\"col-xs-3\">\n                      <!-- <i class=\"fa fa-support fa-5x\"></i> -->\n                    </div>\n                    <div class=\"col-xs-9 text-right\">\n                      <div class=\"huge\">NA</div>\n                      <div>Outlet pipe</div>\n                    </div>\n                  </div>\n                </div>\n                <a href=\"#\">\n                  <div class=\"panel-footer\">\n                    <span class=\"pull-left\">View Details</span>\n                    <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                    <div class=\"clearfix\"></div>\n                  </div>\n                </a>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <!-- /.container-fluid -->\n</div>\n<!-- /#page-wrapper -->\n";
 	},"useData":true});
 
 /***/ },
@@ -11806,7 +11814,7 @@
 	var Handlebars = __webpack_require__(10);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "<li>\n  <a href=\"javascript:;\" data-toggle=\"collapse\" data-target=\"#home\"><i class=\"fa fa-lg fa-fw fa-home\"></i> Home <i class=\"fa fa-fw fa-caret-down\"></i></a>\n  <ul id=\"home\" class=\"collapse\">\n    <li>\n      <a data-role=\"dashboard\" ><i class=\"fa fa-fw fa-dashboard\"></i> Dashboard</a>\n      <a data-role=\"rules\" ><i class=\"fa fa-fw fa-edit\"></i> Rules</a>\n    </li>\n  </ul>\n</li>\n\n<li>\n  <a href=\"javascript:;\" data-toggle=\"collapse\" data-target=\"#boat\"><i class=\"fa fa-lg fa-fw fa-ship\"></i> Boat <i class=\"fa fa-fw fa-caret-down\"></i></a>\n  <ul id=\"boat\" class=\"collapse\">\n    <li>\n      <a data-role=\"camera\"><i class=\"fa fa-video-camera\"></i> Camera</a>\n    </li>\n  </ul>\n</li>\n";
+	    return "<li>\n  <a href=\"javascript:;\" data-toggle=\"collapse\" data-target=\"#home\"><i class=\"fa fa-lg fa-fw fa-home\"></i> Home <i class=\"fa fa-fw fa-caret-down\"></i></a>\n  <ul id=\"home\" class=\"collapse\">\n    <li>\n      <a data-role=\"dashboard\" ><i class=\"fa fa-fw fa-dashboard\"></i> Dashboard</a>\n      <a data-role=\"rules\" ><i class=\"fa fa-fw fa-edit\"></i> Rules</a>\n      <a data-role=\"demo\" ><i class=\"fa fa-fw fa-lightbulb-o\"></i> Lite Demo ;-)</a>\n    </li>\n  </ul>\n</li>\n<li>\n  <a href=\"javascript:;\" data-toggle=\"collapse\" data-target=\"#boat\"><i class=\"fa fa-lg fa-fw fa-ship\"></i> Boat <i class=\"fa fa-fw fa-caret-down\"></i></a>\n  <ul id=\"boat\" class=\"collapse\">\n    <li>\n      <a data-role=\"camera\"><i class=\"fa fa-video-camera\"></i> Camera</a>\n    </li>\n  </ul>\n</li>\n";
 	},"useData":true});
 
 /***/ },
@@ -28637,11 +28645,45 @@
 /* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Handlebars = __webpack_require__(10);
-	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
-	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "  <div class=\"container jumbotron row\">\n      <div class=\"col-md-4 col-md-offset-4\">\n          <div class=\"login-panel panel panel-default\">\n              <div class=\"panel-heading\">\n                  <h3 class=\"panel-title\">Please Sign UP</h3>\n              </div>\n              <div class=\"panel-body\">\n                  <form role=\"signUp\">\n                      <fieldset>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[email]\" type=\"email\" class=\"form-control\" placeholder=\"Email address\" required autofocus>\n                          </div>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[password]\" type=\"password\" class=\"form-control\" placeholder=\"Password\" required>\n                          </div>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[password_confirmation]\" type=\"password\" class=\"form-control\" placeholder=\"Confirm Password\" required>\n                          </div>\n                          <a class=\"signUp-button btn btn-lg btn-warning btn-block\">Sign up</a>\n                      </fieldset>\n                  </form>\n              </div>\n          </div>\n      </div>\n  </div>\n";
-	},"useData":true});
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	'use Strict';
+
+	var demoTemplate = __webpack_require__(117);
+	var env = __webpack_require__(5);
+	var mqtt = __webpack_require__(36);
+
+	var client = mqtt.connect(env.ws, {
+	  protocolId: 'MQIsdp',
+	  protocolVersion: 3
+	});
+
+	var renderDashboard = function renderDashboard() {
+	  $('#page-wrapper').empty();
+	  $('#page-wrapper').append(demoTemplate());
+
+	  $('.btn').each(function () {
+	    var count = 1;
+	    $(this).on('click', function () {
+	      var state = false;
+	      count++;
+	      if (count % 2) {
+	        $(this).removeClass('btn-primary btn-success').addClass('btn-danger');
+	        state = '1';
+	      } else {
+	        $(this).removeClass('btn-primary btn-danger').addClass('btn-success');
+	        state = '0';
+	      }
+	      var pin = $(this).data('id');
+	      var message = pin + state;
+	      client.publish('/control/', message);
+	    });
+	  });
+	};
+
+	module.exports = {
+	  renderDashboard: renderDashboard
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
 /* 117 */
@@ -28650,7 +28692,7 @@
 	var Handlebars = __webpack_require__(10);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "  <div class=\"container jumbotron row\">\n      <div class=\"col-md-4 col-md-offset-4\">\n          <div class=\"login-panel panel panel-default\">\n              <div class=\"panel-heading\">\n                  <h3 class=\"panel-title\">Please Sign In</h3>\n              </div>\n              <div class=\"panel-body\">\n                  <form role=\"signIn\">\n                      <fieldset>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[email]\" type=\"email\" class=\"form-control\" placeholder=\"Email address\" required autofocus>\n                          </div>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[password]\" type=\"password\" class=\"form-control\" placeholder=\"Password\" required>\n                          </div>\n                          <!-- <div class=\"checkbox\">\n                              <label>\n                                  <input name=\"remember\" type=\"checkbox\" value=\"true\">Remember Me\n                              </label>\n                          </div> -->\n                          <a class=\"signIn-button btn btn-lg btn-success btn-block\">Sign-In</a>\n                      </fieldset>\n                  </form>\n              </div>\n          </div>\n      </div>\n  </div>\n";
+	    return "<div class=\"container-fluid\">\n  <!-- Page Heading -->\n  <div class=\"row\">\n    <div class=\"col-lg-12\">\n      <h1 class=\"page-header\"> DEMO</h1>\n      <ol class=\"breadcrumb\">\n        <li>\n          <a>Home</a>\n        </li>\n        <li class=\"active\">\n          Controls\n        </li>\n      </ol>\n    </div>\n  </div>\n  <!-- /.row -->\n  <div class=\"row\">\n    <div class=\"col-lg-3\">\n      <div class=\"panel panel-default livingroom\">\n        <div class=\"panel-heading\">\n          <h3 class=\"panel-title\"></i> Living Room</h3>\n        </div>\n        <div class=\"panel-body\">\n          <div class=\"row\">\n            <div class=\"col-lg-12 col-md-6\">\n              <div class=\"panel panel-primary upstairs\">\n                <div class=\"panel-heading\">\n                  <div class=\"row\">\n                    <div class=\"col-xs-3\">\n                      <!-- <i class=\"fa fa-shopping-cart fa-5x\"></i> -->\n                    </div>\n                    <div class=\"col-xs-9 text-right\">\n                      <div class=\"huge\">NA</div>\n                      <div>Up-stairs</div>\n                    </div>\n                  </div>\n                </div>\n                <a href=\"\">\n                  <div class=\"panel-footer\">\n                    <span class=\"pull-left\">View Details</span>\n                    <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                    <div class=\"clearfix\"></div>\n                  </div>\n                </a>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n</div>\n\n<div class=\"row\">\n  <div class=\"col-lg-4\">\n    <div class=\"panel panel-default basement\">\n      <div class=\"panel-heading\">\n        <h3 class=\"panel-title\"></i> Basement Floor</h3>\n      </div>\n      <div class=\"panel-body\">\n        <div class=\"col-lg-12\">\n          <button type=\"button\" class=\"btn btn-lg btn-primary\" data-id='0'>Sump Pump</button>\n          <div class=\"row\">\n            <p></p>\n          </div>\n          <button type=\"button\" class=\"btn btn-lg btn-primary\" data-id='1'>Basement Light</button>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"col-lg-5\">\n    <div class=\"panel panel-default firstfloor\">\n      <div class=\"panel-heading\">\n        <h3 class=\"panel-title\"></i> First Floor</h3>\n      </div>\n      <div class=\"panel-body\">\n        <div class=\"col-lg-6\">\n          <button type=\"button\" class=\"btn btn-lg btn-primary\" data-id='2'>Kitchen Lights</button>\n          <div class=\"row\">\n            <p></p>\n          </div>\n          <button type=\"button\" class=\"btn btn-lg btn-primary\" data-id='3'>Kitchen Fan</button>\n        </div>\n        <div class=\"col-lg-6\">\n          <button type=\"button\" class=\"btn btn-lg btn-primary\" data-id='4'>Living Room Lights</button>\n          <div class=\"row\">\n            <p></p>\n          </div>\n          <button type=\"button\" class=\"btn btn-lg btn-primary\" data-id='5'>Wood Stove Blower</button>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"col-lg-3\">\n    <div class=\"panel panel-default firstfloor\">\n      <div class=\"panel-heading\">\n        <h3 class=\"panel-title\"></i> Second Floor</h3>\n      </div>\n      <div class=\"panel-body\">\n        <div class=\"col-lg-12\">\n          <button type=\"button\" class=\"btn btn-lg btn-primary\" data-id='6'>Bedroom Lights</button>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n";
 	},"useData":true});
 
 /***/ },
@@ -28660,7 +28702,7 @@
 	var Handlebars = __webpack_require__(10);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "<div class=\"container jumbotron row\">\n  <div class=\"col-md-4 col-md-offset-4\">\n    <div class=\"login-panel panel panel-default\">\n      <div class=\"panel-heading\">\n        <h3 class=\"panel-title\">Change Password</h3>\n      </div>\n      <div class=\"panel-body\">\n        <form role=\"changePass\">\n          <fieldset>\n            <div class=\"form-group\">\n              <input name=\"passwords[old]\" type=\"password\" class=\"form-control\" placeholder=\"Old Password\" required>\n            </div>\n            <div class=\"form-group\">\n              <input name=\"passwords[new]\" type=\"password\" class=\"form-control\" placeholder=\"New Password\" required>\n            </div>\n            <a class=\"changePass-button btn btn-lg btn-info btn-block\">Change Password</a>\n          </fieldset>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>\n";
+	    return "  <div class=\"container jumbotron row\">\n      <div class=\"col-md-4 col-md-offset-4\">\n          <div class=\"login-panel panel panel-default\">\n              <div class=\"panel-heading\">\n                  <h3 class=\"panel-title\">Please Sign UP</h3>\n              </div>\n              <div class=\"panel-body\">\n                  <form role=\"signUp\">\n                      <fieldset>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[email]\" type=\"email\" class=\"form-control\" placeholder=\"Email address\" required autofocus>\n                          </div>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[password]\" type=\"password\" class=\"form-control\" placeholder=\"Password\" required>\n                          </div>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[password_confirmation]\" type=\"password\" class=\"form-control\" placeholder=\"Confirm Password\" required>\n                          </div>\n                          <a class=\"signUp-button btn btn-lg btn-warning btn-block\">Sign up</a>\n                      </fieldset>\n                  </form>\n              </div>\n          </div>\n      </div>\n  </div>\n";
 	},"useData":true});
 
 /***/ },
@@ -28670,7 +28712,7 @@
 	var Handlebars = __webpack_require__(10);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "<li>\n  <a><i class=\"fa fa-fw fa-user\"></i> Profile</a>\n</li>\n<li>\n  <a><i class=\"fa fa-fw fa-envelope\"></i> Inbox</a>\n</li>\n<li>\n  <a><i class=\"fa fa-fw fa-gear\"></i> Settings</a>\n</li>\n<li class=\"changePass-nav-button\">\n  <a><i class=\"fa fa-fw fa-power-off\"></i> Change Password</a>\n</li>\n<li class=\"divider\"></li>\n<li class=\"signOut-button\">\n  <a><i class=\"fa fa-fw fa-power-off\"></i> Log Out</a>\n</li>\n";
+	    return "  <div class=\"container jumbotron row\">\n      <div class=\"col-md-4 col-md-offset-4\">\n          <div class=\"login-panel panel panel-default\">\n              <div class=\"panel-heading\">\n                  <h3 class=\"panel-title\">Please Sign In</h3>\n              </div>\n              <div class=\"panel-body\">\n                  <form role=\"signIn\">\n                      <fieldset>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[email]\" type=\"email\" class=\"form-control\" placeholder=\"Email address\" required autofocus>\n                          </div>\n                          <div class=\"form-group\">\n                              <input name=\"credentials[password]\" type=\"password\" class=\"form-control\" placeholder=\"Password\" required>\n                          </div>\n                          <!-- <div class=\"checkbox\">\n                              <label>\n                                  <input name=\"remember\" type=\"checkbox\" value=\"true\">Remember Me\n                              </label>\n                          </div> -->\n                          <a class=\"signIn-button btn btn-lg btn-success btn-block\">Sign-In</a>\n                      </fieldset>\n                  </form>\n              </div>\n          </div>\n      </div>\n  </div>\n";
 	},"useData":true});
 
 /***/ },
@@ -28680,12 +28722,30 @@
 	var Handlebars = __webpack_require__(10);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    return "<div class=\"container jumbotron row\">\n  <div class=\"col-md-4 col-md-offset-4\">\n    <div class=\"login-panel panel panel-default\">\n      <div class=\"panel-heading\">\n        <h3 class=\"panel-title\">Change Password</h3>\n      </div>\n      <div class=\"panel-body\">\n        <form role=\"changePass\">\n          <fieldset>\n            <div class=\"form-group\">\n              <input name=\"passwords[old]\" type=\"password\" class=\"form-control\" placeholder=\"Old Password\" required>\n            </div>\n            <div class=\"form-group\">\n              <input name=\"passwords[new]\" type=\"password\" class=\"form-control\" placeholder=\"New Password\" required>\n            </div>\n            <a class=\"changePass-button btn btn-lg btn-info btn-block\">Change Password</a>\n          </fieldset>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>\n";
+	},"useData":true});
+
+/***/ },
+/* 121 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(10);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    return "<li>\n  <a><i class=\"fa fa-fw fa-user\"></i> Profile</a>\n</li>\n<li>\n  <a><i class=\"fa fa-fw fa-envelope\"></i> Inbox</a>\n</li>\n<li>\n  <a><i class=\"fa fa-fw fa-gear\"></i> Settings</a>\n</li>\n<li class=\"changePass-nav-button\">\n  <a><i class=\"fa fa-fw fa-power-off\"></i> Change Password</a>\n</li>\n<li class=\"divider\"></li>\n<li class=\"signOut-button\">\n  <a><i class=\"fa fa-fw fa-power-off\"></i> Log Out</a>\n</li>\n";
+	},"useData":true});
+
+/***/ },
+/* 122 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(10);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
 	    return "<li data-role=\"login\">\n  <a><i class=\"fa fa-fw fa-power-off\"></i> Log In</a>\n</li>\n<li data-role=\"signup\">\n  <a><i class=\"fa fa-fw fa-power-off\"></i> Sign Up</a>\n</li>\n";
 	},"useData":true});
 
 /***/ },
-/* 121 */,
-/* 122 */,
 /* 123 */,
 /* 124 */,
 /* 125 */,
@@ -28701,7 +28761,9 @@
 /* 135 */,
 /* 136 */,
 /* 137 */,
-/* 138 */
+/* 138 */,
+/* 139 */,
+/* 140 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(jQuery) {/*!
