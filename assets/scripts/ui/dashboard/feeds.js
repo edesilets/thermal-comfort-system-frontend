@@ -55,15 +55,15 @@ let bindBoilerUpdate = function (location, messageTemperature) {
 };
 
 let bindThermostatUpdate = function (location, messageTemperature) {
-  if (messageTemperature < 50) {
+  if (messageTemperature <= 50) {
     $(location).removeClass('panel-primary').addClass('panel-info');
   } else if (messageTemperature > 50 && messageTemperature < 60) {
     $(location).removeClass('panel-info panel-green').addClass('panel-primary');
-  }else if (messageTemperature > 60 && messageTemperature < 77) {
+  }else if (messageTemperature >= 60 && messageTemperature < 77) {
     $(location).removeClass('panel-primary panel-yellow').addClass('panel-green');
-  } else if (messageTemperature < 77 && messageTemperature > 85) {
+  } else if (messageTemperature >= 77 && messageTemperature < 85) {
     $(location).removeClass('panel-green panel-red').addClass('panel-yellow');
-  } else if (messageTemperature > 85) {
+  } else if (messageTemperature >= 85) {
     $(location).removeClass('panel-yellow').addClass('panel-red');
   }
   $(location).find('.huge').empty().append(messageTemperature + '&deg;F');
