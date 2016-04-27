@@ -24,6 +24,10 @@ let displayFeedsOnDashboard = function () {
       let temp = parseFloat(message.toString().replace(' ', '')).toFixed(2);
       bindBoilerUpdate($('.coalshedboiler .outletpipe'), temp);
 
+    } else if (topic === '/home/coalshed/boiler/temperature/waterjacket') {
+      let temp = parseFloat(message.toString().replace(' ', '')).toFixed(2);
+      bindBoilerUpdate($('.coalshedboiler .waterjacket'), temp);
+
     } else if (topic === '/home/basement/boiler/temperature/inletpipe') {
       let temp = parseFloat(message.toString().replace(' ', '')).toFixed(2);
       bindBoilerUpdate($('.basementboiler .inletpipe'), temp);
