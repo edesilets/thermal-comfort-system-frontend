@@ -39,6 +39,18 @@ let displayFeedsOnDashboard = function () {
     } else if (topic === '/home/livingroom/thermostat/temperature/livingroom') {
       let temp = parseFloat(message.toString().replace(' ', '')).toFixed(2);
       bindThermostatUpdate($('.livingroom .upstairs'), temp);
+
+    } else if (topic === '/home/livingroom/thermostat/humidity/livingroom') {
+      let temp = parseFloat(message.toString().replace(' ', '')).toFixed(2);
+      bindHumidistatUpdate($('.livingroom .humidity'), temp);
+
+    } else if (topic === '/home/basement/thermostat/temperature/basement') {
+      let temp = parseFloat(message.toString().replace(' ', '')).toFixed(2);
+      bindThermostatUpdate($('.basement .air'), temp);
+
+    } else if (topic === '/home/basement/thermostat/humidity/basement') {
+      let temp = parseFloat(message.toString().replace(' ', '')).toFixed(2);
+      bindHumidistatUpdate($('.basement .humidity'), temp);
     }
   });
 };
@@ -71,6 +83,21 @@ let bindThermostatUpdate = function (location, messageTemperature) {
     $(location).removeClass('panel-yellow').addClass('panel-red');
   }
   $(location).find('.huge').empty().append(messageTemperature + '&deg;F');
+};
+
+let bindHumidistatUpdate = function (location, messageHumidity) {
+  if (messageHumidity < 20) {
+    $(location).removeClass('panel-primary').addClass('panel-red');
+  } else if (messageHumidity > 20 && messageHumidity < 30) {
+    $(location).removeClass('panel-red panel-primary').addClass('panel-yellow');
+  }else if (messageHumidity >= 30 && messageHumidity < 50) {
+    $(location).removeClass('panel-primary panel-yellow').addClass('panel-green');
+  } else if (messageHumidity >= 50 && messageHumidity < 60) {
+    $(location).removeClass('panel-green panel-red').addClass('panel-yellow');
+  } else if (messageHumidity >= 70) {
+    $(location).removeClass('panel-yellow').addClass('panel-red');
+  }
+  $(location).find('.huge').empty().append(messageHumidity + '%');
 };
 
 let renderDashboard = function () {
