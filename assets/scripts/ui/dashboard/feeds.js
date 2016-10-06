@@ -40,6 +40,10 @@ let displayFeedsOnDashboard = function () {
       let temp = parseFloat(message.toString().replace(' ', '')).toFixed(2);
       bindThermostatUpdate($('.livingroom .upstairs'), temp);
 
+    } else if (topic === '/home/livingroom/thermostat/humidity/livingroom') {
+      let temp = parseFloat(message.toString().replace(' ', '')).toFixed(2);
+      bindHumidistatUpdate($('.livingroom .humidity'), temp);
+
     } else if (topic === '/home/basement/thermostat/temperature/basement') {
       let temp = parseFloat(message.toString().replace(' ', '')).toFixed(2);
       bindThermostatUpdate($('.basement .air'), temp);
@@ -82,7 +86,7 @@ let bindThermostatUpdate = function (location, messageTemperature) {
 };
 
 let bindHumidistatUpdate = function (location, messageHumidity) {
-  if (messageHumidity <= 20) {
+  if (messageHumidity < 20) {
     $(location).removeClass('panel-primary').addClass('panel-red');
   } else if (messageHumidity > 20 && messageHumidity < 30) {
     $(location).removeClass('panel-red panel-primary').addClass('panel-yellow');
