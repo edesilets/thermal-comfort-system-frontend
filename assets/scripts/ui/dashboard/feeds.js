@@ -94,8 +94,8 @@ let bindHumidistatUpdate = function (location, messageHumidity) {
     $(location).removeClass('panel-primary panel-yellow').addClass('panel-green');
   } else if (messageHumidity >= 50 && messageHumidity < 60) {
     $(location).removeClass('panel-primary panel-green panel-red').addClass('panel-yellow');
-  } else if (messageHumidity >= 70) {
-    $(location).removeClass('panel-yellow').addClass('panel-red');
+  } else if (messageHumidity >= 60) {
+    $(location).removeClass('panel-primary panel-green panel-red panel-yellow').addClass('panel-red');
   }
   $(location).find('.huge').empty().append(messageHumidity + '%');
 };
